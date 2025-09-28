@@ -5,7 +5,6 @@
 * [Quick Start Guide](getting-started/quick-start-guide.md)
 
 ## 💡 Core Concepts
-* [Understanding Multi-Chain Trading](core-concepts/multi-chain-trading.md)
 * [Vaults Explained](core-concepts/vaults-explained.md)
 * [Trading Flows & Workflows](core-concepts/trading-flows-workflows.md)
 * [AI-Powered Trading](core-concepts/ai-powered-trading.md)
@@ -26,20 +25,6 @@
 * [API Reference](technical-documentation/api-reference.md)
 * [Node Development](technical-documentation/node-development.md)
 
-## 🛡️ Security & Risk Management
-* [Vault Security](security-risk-management/vault-security.md)
-* [Trading Risk Controls](security-risk-management/trading-risk-controls.md)
-* [Best Practices](security-risk-management/best-practices.md)
-
-## 🔧 Advanced Features
-* [Integration Ecosystem](advanced-features/integration-ecosystem.md)
-* [Performance Optimization](advanced-features/performance-optimization.md)
-* [Monitoring & Analytics](advanced-features/monitoring-analytics.md)
-
-## 🚀 Deployment & Operations
-* [Environment Setup](deployment-operations/environment-setup.md)
-* [Going Live](deployment-operations/going-live.md)
-* [Maintenance & Updates](deployment-operations/maintenance-updates.md)
 
 ## 📚 Resources
 * [Tutorials & Guides](resources/tutorials-guides.md)
@@ -47,7 +32,5 @@
 * [Community & Support](resources/community-support.md)
 
 ## 📄 Legal & Compliance
-* [Terms of Service](legal-compliance/terms-of-service.md)
-* [Privacy Policy](legal-compliance/privacy-policy.md)
-* [Risk Disclaimers](legal-compliance/risk-disclaimers.md)
-* [Regulatory Considerations](legal-compliance/regulatory-considerations.md)
+* [Terms of Service & Privacy Policy](legal-compliance/terms-privacy.md)
+* [Risk Disclaimers & Regulatory Considerations](legal-compliance/risk-compliance.md)
