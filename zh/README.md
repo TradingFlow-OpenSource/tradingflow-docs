@@ -9,7 +9,8 @@ TradingFlow 是一个让普通人能以编程式与 Web3 交互的工作流应�
 ## 🌍 其他语言
 
 本文档还提供以下语言版本：
-- **[English Documentation](https://your-org.gitbook.io/tradingflow-en)** - 英文文档
+
+- **[English Documentation](https://docs.tradingflows.ai)** - 英文文档
 
 ---
 
