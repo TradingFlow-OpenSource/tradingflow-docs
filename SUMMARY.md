@@ -1,49 +1,31 @@
-# Table of Contents
+# Choose Your Language | 选择语言
 
-## 🇬🇧 English
+## 🌍 Select Language / 选择语言
 
-### Getting Started
-* [What is TradingFlow?](en/getting-started/what-is-tradingflow.md)
-* [Simple Example](en/getting-started/simple-example.md)
-
-### Learn by Examples
-* [Examples](en/learn-by-examples/index.md)
-
-### Core Concepts
-* [On-Chain Vaults](en/core-concepts/on-chain-vaults.md)
-* [Decentralized Account System](en/core-concepts/decentralized-account-system.md)
-* [Nodes and Workflows](en/core-concepts/nodes-and-workflows.md)
-
-### Node Details
-* [Node List](en/node-details/index.md)
-
-### Engineering Docs
-* [Development Background](en/engineering-docs/development-background.md)
-
-### Resources
-* [Community Resources](en/resources/community-resources.md)
+* [🇬🇧 English Documentation](en/README.md)
+* [🇨🇳 中文文档](zh/README.md)
 
 ---
 
-## 🇨🇳 中文
+## 📝 About Multiple Spaces | 关于多空间
 
-### 快速开始
-* [什么是 TradingFlow？](zh/getting-started/what-is-tradingflow.md)
-* [最简单的示例](zh/getting-started/simple-example.md)
+This is the language selection page. Each language has its own dedicated GitBook Space:
 
-### 通过例子学习
-* [学习示例](zh/learn-by-examples/index.md)
+这是语言选择页面。每种语言都有自己独立的 GitBook Space：
 
-### 核心概念
-* [链上金库](zh/core-concepts/on-chain-vaults.md)
-* [去中心化账户体系](zh/core-concepts/decentralized-account-system.md)
-* [节点与工作流](zh/core-concepts/nodes-and-workflows.md)
+### English Space
+URL: `https://your-org.gitbook.io/tradingflow-en`
 
-### 节点详情
-* [节点列表](zh/node-details/index.md)
+### Chinese Space | 中文空间
+URL: `https://your-org.gitbook.io/tradingflow-zh`
 
-### 工程文档
-* [开发背景](zh/engineering-docs/development-background.md)
+---
 
-### 资源
-* [社区资源](zh/resources/community-resources.md)
+## 🚀 Quick Setup | 快速设置
+
+1. Create two separate GitBook Spaces
+2. Connect English space to `en/` folder
+3. Connect Chinese space to `zh/` folder
+4. Add cross-references in each space's README
+
+详细设置请参考 [MULTILANG_SETUP.md](MULTILANG_SETUP.md)

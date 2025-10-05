@@ -4,6 +4,15 @@ Welcome to the official TradingFlow documentation!
 
 TradingFlow is a workflow application platform that enables everyone to interact with Web3 programmatically.
 
+---
+
+## 🌍 Other Languages
+
+This documentation is also available in:
+- **[中文文档](https://your-org.gitbook.io/tradingflow-zh)** - Chinese documentation
+
+---
+
 ## 📚 Quick Navigation
 
 - **[Getting Started](getting-started/what-is-tradingflow.md)** - Learn the basics of TradingFlow
