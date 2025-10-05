@@ -6,14 +6,6 @@ TradingFlow is a workflow application platform that enables everyone to interact
 
 ---
 
-## 🌍 Other Languages
-
-This documentation is also available in:
-
-- **[中文文档](https://zh-docs.tradingflows.ai)** - Chinese documentation
-
----
-
 ## 📚 Quick Navigation
 
 - **[Getting Started](getting-started/what-is-tradingflow.md)** - Learn the basics of TradingFlow
@@ -22,3 +14,11 @@ This documentation is also available in:
 - **[Node Details](node-details/index.md)** - Explore detailed node documentation
 - **[Engineering Docs](engineering-docs/development-background.md)** - Understand development background and technical details
 - **[Resources](resources/community-resources.md)** - Get community support and more resources
+
+---
+
+## 🌍 Other Languages
+
+This documentation is also available in:
+
+- **[中文文档](https://zh-docs.tradingflows.ai)** - Chinese documentation
