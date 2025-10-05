@@ -1,50 +1,31 @@
 # TradingFlow Documentation
 
-Welcome to TradingFlow - the next generation visual trading automation platform.
+Welcome to TradingFlow official documentation! 欢迎来到 TradingFlow 官方文档！
 
-## 🚀 What is TradingFlow?
+## 🌍 Choose Your Language / 选择语言
 
-TradingFlow is a revolutionary multi-chain trading automation platform that empowers traders to build, test, and deploy sophisticated trading strategies through an intuitive visual interface. No more complex coding - just drag, drop, and connect nodes to create powerful automated trading workflows.
+### [🇨🇳 中文文档](zh/README.md)
+阅读中文版本的 TradingFlow 文档
 
-## ✨ Key Features
-
-- **Visual Workflow Builder**: Create complex trading strategies with our intuitive drag-and-drop interface
-- **Multi-Chain Support**: Trade across Aptos, Flow EVM, BSC, and Ethereum seamlessly
-- **AI-Powered Trading**: Integrate AI decision-making nodes for intelligent strategy execution
-- **Secure Vault Management**: Deploy personal and multi-user vaults with advanced security features
-- **Real-Time Monitoring**: Track your strategies' performance with comprehensive analytics
-- **Community-Driven**: Share and discover strategies from the TradingFlow community
-
-## 🎯 For Different Users
-
-### New to Trading Automation?
-Start with our [Quick Start Guide](getting-started/quick-start-guide.md) to create your first automated trading strategy in minutes.
-
-### Professional Traders?
-Explore our [Advanced Trading Patterns](for-traders/advanced-trading-patterns.md) and learn how to build sophisticated multi-chain strategies.
-
-### Developers?
-Check out our [Technical Documentation](technical-documentation/) to understand the architecture and build custom nodes.
-
-## 🌍 Multi-Language Support
-
-This documentation is available in multiple languages:
-- [English](/) (Current)
-- [中文](../zh/) (Coming Soon)
-
-## 🤝 Community & Support
-
-- **Discord**: Join our community for real-time support and strategy sharing
-- **GitHub**: Contribute to our open-source components
-- **Support**: Contact our team for technical assistance
+### [🇬🇧 English Documentation](en/README.md)
+Read TradingFlow documentation in English
 
 ---
 
-*Building the future of decentralized trading automation, one node at a time.*
+## 📌 Quick Links / 快速链接
 
-## Quick Navigation
+### 中文
+- [什么是 TradingFlow？](zh/getting-started/what-is-tradingflow.md)
+- [核心概念](zh/core-concepts/on-chain-vaults.md)
+- [开发背景](zh/engineering-docs/development-background.md)
 
-- [Getting Started →](getting-started/)
-- [Core Concepts →](core-concepts/)
-- [For Traders →](for-traders/)
-- [Technical Docs →](technical-documentation/)
+### English
+- [What is TradingFlow?](en/getting-started/what-is-tradingflow.md)
+- [Core Concepts](en/core-concepts/on-chain-vaults.md)
+- [Development Background](en/engineering-docs/development-background.md)
+
+---
+
+**TradingFlow** - Empowering everyone to interact with Web3 programmatically.
+
+**TradingFlow** - 让每个人都能以编程式与 Web3 交互。
