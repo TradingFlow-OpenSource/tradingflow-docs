@@ -19,6 +19,13 @@
 
 ## 👷 Engineering Docs
 * [Development Background](engineering-docs/development-background.md)
+* [Weather Station Developer Documentation](engineering-docs/README.md)
+  * [Documentation Index](engineering-docs/weather-station-index.md)
+  * [Architecture Overview](engineering-docs/weather-station-overview.md)
+  * [Message Queue Details](engineering-docs/weather-station-message-queue.md)
+  * [Redis State Management](engineering-docs/weather-station-redis.md)
+  * [Node Execution Flow](engineering-docs/weather-station-node-execution.md)
+  * [Flow Scheduling Mechanism](engineering-docs/weather-station-flow-scheduling.md)
 
 ## 📚 Resources
 * [Community Resources](resources/community-resources.md)

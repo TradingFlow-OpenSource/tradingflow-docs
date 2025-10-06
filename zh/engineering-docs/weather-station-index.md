@@ -190,35 +190,36 @@
 
 Weather Station 提供 12+ 种节点类型，每个节点都有独立的详细文档页面。
 
-### 🔗 [节点文档索引](nodes/README.md)
+### 🔗 [节点文档索引](../zh/node-details/index.md)
 
 **按分类浏览：**
 
 #### 数据输入节点
-- **[Binance Price Node](nodes/binance-price-node.md)** - 获取 Binance 交易所 K 线数据
-- **[X Listener Node](nodes/x-listener-node.md)** - 监听 Twitter/X 平台动态
-- **[RSSHub Node](nodes/rsshub-node.md)** - 订阅 RSS 新闻资讯
-- **[Dataset Node](nodes/dataset-node.md)** - Google Sheets 数据读写
+- **[Binance Price Node](../zh/node-details/binance-price-node.md)** - 获取 Binance 交易所 K 线数据
+- **[X Listener Node](../zh/node-details/x-listener-node.md)** - 监听 Twitter/X 平台动态
+- **[Dataset Input Node](../zh/node-details/dataset-input-node.md)** - 从 Google Sheets 读取数据
 
 #### AI 处理节点
-- **[AI Model Node](nodes/ai-model-node.md)** - 调用 LLM 进行智能分析和决策
-- **[Code Node](nodes/code-node.md)** - 执行自定义 Python 代码
+- **[AI Model Node](../zh/node-details/ai-model-node.md)** - 调用 LLM 进行智能分析和决策
+- **[Code Node](../zh/node-details/code-node.md)** - 执行自定义 Python 代码
 
 #### 交易执行节点
-- **[Swap Node](nodes/swap-node.md)** - 多链代币交换（Aptos、Flow EVM）
-- **[Buy Node](nodes/buy-node.md)** - 专用买入节点
-- **[Sell Node](nodes/sell-node.md)** - 专用卖出节点
-- **[Uniswap DEX Trade Node](nodes/uniswap-dex-trade-node.md)** - Uniswap 交易
+- **[Swap Node](../zh/node-details/swap-node.md)** - 多链代币交换（Aptos、Flow EVM）
+- **[Buy Node](../zh/node-details/buy-node.md)** - 专用买入节点
+- **[Sell Node](../zh/node-details/sell-node.md)** - 专用卖出节点
 
 #### Vault 管理节点
-- **[Vault Node](nodes/vault-node.md)** - 查询和管理 Vault 信息
+- **[Vault Node](../zh/node-details/vault-node.md)** - 查询和管理 Vault 信息
+
+#### 数据输出节点
+- **[Dataset Output Node](../zh/node-details/dataset-output-node.md)** - 写入数据到 Google Sheets
 
 #### 通知节点
-- **[Telegram Sender Node](nodes/telegram-sender-node.md)** - 发送 Telegram 通知
+- **[Telegram Sender Node](../zh/node-details/telegram-sender-node.md)** - 发送 Telegram 通知
 
 ### 📖 查看完整节点列表
 
-访问 **[节点文档目录](nodes/README.md)** 查看所有节点的详细文档，包括：
+访问 **[节点文档索引](../zh/node-details/index.md)** 查看所有节点的详细文档，包括：
 - 完整的参数说明
 - 输入输出格式
 - 执行流程图
@@ -256,17 +257,19 @@ Weather Station 提供 12+ 种节点类型，每个节点都有独立的详细�
 
 ### v1.0.0 (2025-10-06)
 - ✅ 创建完整的 Weather Station 开发者文档
-- ✅ 架构概述
-- ✅ 消息队列详解
-- ✅ Redis 状态管理
-- ✅ 节点执行流程
-- ✅ Flow 调度机制
-- ✅ 节点详情文档（12+ 节点）
-  - ✅ Binance Price Node
-  - ✅ AI Model Node
-  - ✅ Swap Node
-  - ✅ 节点文档索引
-- ✅ 主文档索引
+- ✅ 架构概述（17,500 字）
+- ✅ 消息队列详解（22,000 字）
+- ✅ Redis 状态管理（17,500 字）
+- ✅ 节点执行流程（27,500 字）
+- ✅ Flow 调度机制（24,500 字）
+- ✅ 主文档索引（导航优化）
+- ✅ 链接到已有节点详情文档（12+ 节点）
+  - ✅ 数据输入节点（3 个）
+  - ✅ AI 处理节点（2 个）
+  - ✅ 交易执行节点（3 个）
+  - ✅ Vault 管理节点（1 个）
+  - ✅ 数据输出节点（1 个）
+  - ✅ 通知节点（1 个）
 
 ---
 

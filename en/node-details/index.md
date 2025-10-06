@@ -2,56 +2,68 @@
 
 Welcome to TradingFlow's node usage documentation. Each node has detailed parameter descriptions, usage examples, and best practices.
 
+**Note:** Full English translations are in progress. For now, placeholder pages are provided with links to Chinese versions.
+
 ---
 
 ## 📊 Data Input Nodes
 
 ### Price Data
-- **[Binance Price Node](binance-price-node.md)** - Fetch K-line data and real-time prices from Binance exchange
+- **[Binance Price Node](binance-price-node.md)** ✅ - Fetch K-line data and real-time prices from Binance exchange
 
 ### Social Media
-- **[X Listener Node](x-listener-node.md)** - Monitor Twitter/X social media tweets
-
-### News Aggregation (Coming Soon)
-- **News Aggregation Node** - Get latest industry news
+- **[X Listener Node](x-listener-node.md)** 🔄 - Monitor Twitter/X social media tweets
 
 ### Data Storage
-- **[Dataset Input Node](dataset-input-node.md)** - Read data from Google Sheets
-
-### Blockchain Data (Coming Soon)
-- **On-Chain Data Node** - Read blockchain data
+- **[Dataset Input Node](dataset-input-node.md)** 🔄 - Read data from Google Sheets
 
 ---
 
 ## 🧠 Compute Nodes
 
 ### Intelligent Analysis
-- **[AI Model Node](ai-model-node.md)** - Use GPT-4 and other LLMs for intelligent analysis and decision-making
+- **[AI Model Node](ai-model-node.md)** 🔄 - Use GPT-4 and other LLMs for intelligent analysis and decision-making
 
 ### Code Execution
-- **[Code Node](code-node.md)** - Execute custom Python code for data processing
+- **[Code Node](code-node.md)** 🔄 - Execute custom Python code for data processing
 
 ---
 
 ## 💰 Trade Nodes
 
 ### Vault Management
-- **[Vault Node](vault-node.md)** - Connect to vault and query asset information
+- **[Vault Node](vault-node.md)** 🔄 - Connect to vault and query asset information
 
 ### Trading Operations
-- **[Swap Node](swap-node.md)** - Execute token swap transactions (Base Node)
-- **[Buy Node](buy-node.md)** - Execute buy operations
-- **[Sell Node](sell-node.md)** - Execute sell operations
+- **[Swap Node](swap-node.md)** 🔄 - Execute token swap transactions (Base Node)
+- **[Buy Node](buy-node.md)** 🔄 - Execute buy operations
+- **[Sell Node](sell-node.md)** 🔄 - Execute sell operations
 
 ---
 
 ## 🔧 Core Function Nodes
 
 ### Data Output
-- **[Dataset Output Node](dataset-output-node.md)** - Write data to Google Sheets
+- **[Dataset Output Node](dataset-output-node.md)** 🔄 - Write data to Google Sheets
 
 ### Message Notifications
-- **[Telegram Sender Node](telegram-sender-node.md)** - Send Telegram message notifications
+- **[Telegram Sender Node](telegram-sender-node.md)** 🔄 - Send Telegram message notifications
+
+---
+
+## 📖 Documentation Status
+
+| Status | Meaning |
+|--------|---------|
+| ✅ | Full documentation available |
+| 🔄 | Translation in progress - placeholder available |
+
+**Current Status:**
+- **Fully documented:** 1 node (Binance Price Node)
+- **In translation:** 9 nodes
+- **Total nodes:** 10 nodes
+
+For the most comprehensive documentation, please refer to the [Chinese version](../../zh/node-details/index.md) which includes all 12 nodes with complete details.
 
 ---
 
