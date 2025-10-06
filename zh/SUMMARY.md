@@ -11,6 +11,8 @@
 * [链上金库](core-concepts/on-chain-vaults.md)
 * [去中心化账户体系](core-concepts/decentralized-account-system.md)
 * [节点与工作流](core-concepts/nodes-and-workflows.md)
+* [Weather 语法（Full 版本）](core-concepts/weather-syntax.md)
+* [Weather 语法版本对比](core-concepts/weather-syntax-comparison.md)
 
 ## 📖 节点详情
 * [节点列表](node-details/index.md)

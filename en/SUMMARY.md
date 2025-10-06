@@ -11,6 +11,8 @@
 * [On-Chain Vaults](core-concepts/on-chain-vaults.md)
 * [Decentralized Account System](core-concepts/decentralized-account-system.md)
 * [Nodes and Workflows](core-concepts/nodes-and-workflows.md)
+* [Weather Syntax (Full Version)](core-concepts/weather-syntax.md)
+* [Weather Syntax Version Comparison](core-concepts/weather-syntax-comparison.md)
 
 ## 📖 Node Details
 * [Node List](node-details/index.md)

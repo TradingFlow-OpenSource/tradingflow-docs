@@ -29,6 +29,12 @@ Multiple properly connected nodes form a workflow. Workflows can be simple linea
 
 Through TradingFlow's visual interface, users can assemble nodes by dragging and dropping, and connect their input and output ports with clicks. The platform provides a rich variety of node types, covering data collection, analysis processing, conditional judgment, trade execution, and other aspects, enabling users to quickly build automated strategies that meet their needs.
 
+## Weather Language
+
+The arrangement of nodes forms a workflow. Like any file with a specific format, TradingFlow workflows have their own file format and syntax rules, which we call the "TradingFlow Weather Smart Trading Language." Its engineering essence is a superset of JSON format data.
+
+In the next section, we will introduce the details of the Weather language.
+
 ---
 
-**Next Step:** Check out [Node Details](../node-details/index.md) to explore all available node types and functionalities.
+**Next Step:** Check out [Weather Syntax](weather-syntax.md) to understand workflow file format, or explore [Node Details](../node-details/index.md) for all available node types.
