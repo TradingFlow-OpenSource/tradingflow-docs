@@ -1,7 +1,19 @@
-# Weather Station Developer Documentation
+# Weather Station Trading Engine
 
 **Version:** 1.0.0  
 **Last Updated:** 2025-10-06
+
+---
+
+## 🚀 About Weather Station
+
+Weather Station is TradingFlow's core trading execution engine, providing **high-performance, distributed, and reliable** automated execution capabilities for quantitative trading strategies.
+
+**Core Values:**
+- 🎯 **Intelligent Trading Automation** - Build complex trading strategies through visual nodes
+- ⚡ **High-Performance Execution** - Distributed architecture supports millisecond-level trading response
+- 🔒 **Enterprise-Grade Reliability** - Comprehensive state management and exception recovery
+- 🌐 **Multi-Chain Support** - Native support for Aptos, Flow EVM, and more blockchains
 
 ---
 
@@ -13,16 +25,16 @@
 
 ## 📂 Documentation Structure
 
-### Core Documentation (This Directory)
+### Core Technical Documentation (This Directory)
 
 ```
 7_docs/en/engineering-docs/
 ├── weather-station-index.md              # 📖 Main Index (Start Here)
-├── weather-station-overview.md           # 🏗️ Architecture Overview
-├── weather-station-message-queue.md      # 📨 Message Queue Details
-├── weather-station-redis.md              # 💾 Redis State Management
-├── weather-station-node-execution.md     # ⚙️ Node Execution Flow
-└── weather-station-flow-scheduling.md    # 🔄 Flow Scheduling
+├── weather-station-overview.md           # 🏗️ Engine Architecture Overview
+├── weather-station-message-queue.md      # 📨 Trading Signal Transmission
+├── weather-station-redis.md              # 💾 State Management System
+├── weather-station-node-execution.md     # ⚙️ Trading Node Execution Flow
+└── weather-station-flow-scheduling.md    # 🔄 Strategy Scheduling Mechanism
 ```
 
 ### Node Details Documentation (Separate Pages)
@@ -42,59 +54,59 @@ Each node has its own detailed documentation page with complete parameter descri
 
 ## 🚀 Recommended Reading Paths
 
-### Complete Learning Path (~3 hours)
+### Investor/Product Manager Path (~1 hour)
+
+```
+1. weather-station-index.md           # Understand trading engine capabilities
+2. weather-station-overview.md        # Learn core architecture and advantages
+3. ../node-details/index.md           # View available trading nodes
+```
+
+### Complete Technical Path (~3 hours)
 
 ```
 1. weather-station-index.md           # Understand overall architecture
 2. weather-station-overview.md        # Deep dive into core concepts
-3. weather-station-message-queue.md   # Understand communication
+3. weather-station-message-queue.md   # Understand trading signal transmission
 4. weather-station-redis.md           # Master state management
-5. weather-station-node-execution.md  # Learn node development
-6. weather-station-flow-scheduling.md # Understand scheduling
-7. ../node-details/index.md           # View specific nodes
+5. weather-station-node-execution.md  # Learn node execution mechanism
+6. weather-station-flow-scheduling.md # Understand strategy scheduling
+7. ../node-details/index.md           # View specific node implementations
 ```
 
-### Quick Start Path (~50 minutes)
+### Strategy Developer Path (~50 minutes)
 
 ```
 1. weather-station-overview.md        # Core concepts
-2. weather-station-node-execution.md  # Node development
-3. ../node-details/index.md           # Node examples
-```
-
-### Node Developer Path
-
-```
-1. weather-station-overview.md        # Understand architecture
-2. weather-station-node-execution.md  # Develop new nodes
-3. ../node-details/binance-price-node.md # Reference examples
+2. weather-station-node-execution.md  # Node usage methods
+3. ../node-details/index.md           # Node capability quick reference
 ```
 
 ---
 
 ## 📊 Documentation Statistics
 
-### Core System Documentation
+### Core Technical Documentation
 
 | Document | Words | Status |
 |----------|-------|--------|
-| Architecture Overview | 17,500 | ✅ Complete (Chinese) |
-| Message Queue Details | 22,000 | ✅ Complete (Chinese) |
-| Redis State Management | 17,500 | ✅ Complete (Chinese) |
+| Engine Architecture Overview | 17,500 | ✅ Complete (Chinese) |
+| Trading Signal Transmission | 22,000 | ✅ Complete (Chinese) |
+| State Management System | 17,500 | ✅ Complete (Chinese) |
 | Node Execution Flow | 27,500 | ✅ Complete (Chinese) |
-| Flow Scheduling | 24,500 | ✅ Complete (Chinese) |
-| **Total** | **~109,000** | **🔄 English version coming soon** |
+| Strategy Scheduling Mechanism | 24,500 | ✅ Complete (Chinese) |
+| **Total** | **~109,000** | **🔄 English translation in progress** |
 
-### Node Details Documentation
+### Trading Node Documentation
 
 | Category | English Docs |
 |----------|--------------|
-| Data Input Nodes | 1 page |
-| AI Processing Nodes | Coming soon |
+| Data Collection Nodes | 1 page |
+| AI Intelligence Analysis | Coming soon |
 | Trade Execution Nodes | Coming soon |
-| Vault Management Nodes | Coming soon |
+| Asset Management Nodes | Coming soon |
 | Data Output Nodes | Coming soon |
-| Notification Nodes | Coming soon |
+| Message Notification Nodes | Coming soon |
 
 ---
 
@@ -111,24 +123,24 @@ Each node has its own detailed documentation page with complete parameter descri
 
 ### By Role
 
-**Newcomers:**
+**Investors/Product Managers:**
 ```
-Main Index → Architecture Overview → Node Details
-```
-
-**Node Developers:**
-```
-Architecture Overview → Node Execution → Node Examples
+Main Index → Engine Architecture → Trading Node Capabilities
 ```
 
-**System Architects:**
+**Strategy Developers:**
 ```
-Architecture → Message Queue → Redis → Flow Scheduling
+Engine Architecture → Node Usage Guide → Specific Node Examples
 ```
 
-**Operations:**
+**Technical Architects:**
 ```
-Redis State Management → Flow Scheduling → Node Execution
+Architecture Overview → Signal Transmission → State Management → Scheduling System
+```
+
+**Operations Engineers:**
+```
+State Management System → Scheduling Mechanism → Execution Flow Monitoring
 ```
 
 ---

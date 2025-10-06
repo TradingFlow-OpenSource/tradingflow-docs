@@ -16,10 +16,21 @@
 
 ## 📖 节点详情
 * [节点列表](node-details/index.md)
+  * [Binance Price Node](node-details/binance-price-node.md)
+  * [X Listener Node](node-details/x-listener-node.md)
+  * [Dataset Input Node](node-details/dataset-input-node.md)
+  * [AI Model Node](node-details/ai-model-node.md)
+  * [Code Node](node-details/code-node.md)
+  * [Swap Node](node-details/swap-node.md)
+  * [Buy Node](node-details/buy-node.md)
+  * [Sell Node](node-details/sell-node.md)
+  * [Vault Node](node-details/vault-node.md)
+  * [Dataset Output Node](node-details/dataset-output-node.md)
+  * [Telegram Sender Node](node-details/telegram-sender-node.md)
 
 ## 👷 工程文档
 * [开发背景](engineering-docs/development-background.md)
-* [Weather Station 开发者文档](engineering-docs/README.md)
+* [Weather Station 交易引擎](engineering-docs/README.md)
   * [文档索引](engineering-docs/weather-station-index.md)
   * [架构概述](engineering-docs/weather-station-overview.md)
   * [消息队列详解](engineering-docs/weather-station-message-queue.md)
