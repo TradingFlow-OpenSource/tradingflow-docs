@@ -1,14 +1,61 @@
 # 节点详情
 
-## 🚧 Coming Soon
+欢迎查看 TradingFlow 的节点使用文档。每个节点都有详细的参数说明、使用示例和最佳实践。
 
-我们正在准备详细的节点文档，包括：
+---
 
-### 📊 数据节点
-- **价格查询节点** - 获取实时加密货币价格
-- **社交监听节点** - 监控 Twitter/X 等社交媒体
-- **链上数据节点** - 读取区块链上的数据
+## 📊 数据输入节点
+
+### 价格数据
+- **[Binance Price Node](binance-price-node.md)** - 获取 Binance 交易所的 K 线数据和实时价格
+
+### 社交媒体
+- **[X Listener Node](x-listener-node.md)** - 监控 Twitter/X 社交媒体推文
+
+### 新闻聚合（即将推出）
 - **新闻聚合节点** - 获取最新行业资讯
+
+### 数据存储
+- **[Dataset Input Node](dataset-input-node.md)** - 从 Google Sheets 读取数据
+
+### 区块链数据（即将推出）
+- **链上数据节点** - 读取区块链上的数据
+
+---
+
+## 🧠 计算处理节点
+
+### 智能分析
+- **[AI Model Node](ai-model-node.md)** - 使用 GPT-4 等大语言模型进行智能分析和决策
+
+### 代码执行
+- **[Code Node](code-node.md)** - 执行自定义 Python 代码进行数据处理
+
+---
+
+## 💰 交易执行节点
+
+### 金库管理
+- **[Vault Node](vault-node.md)** - 连接金库并查询资产信息
+
+### 交易操作
+- **[Swap Node](swap-node.md)** - 执行代币交换交易（基类节点）
+- **[Buy Node](buy-node.md)** - 执行买入操作
+- **[Sell Node](sell-node.md)** - 执行卖出操作
+
+---
+
+## 🔧 核心功能节点
+
+### 数据输出
+- **[Dataset Output Node](dataset-output-node.md)** - 将数据写入 Google Sheets
+
+### 消息通知
+- **[Telegram Sender Node](telegram-sender-node.md)** - 发送 Telegram 消息通知
+
+---
+
+## 🚧 更多节点即将推出
 
 ### 🤔 决策节点
 - **条件判断节点** - If/Then/Else 逻辑
