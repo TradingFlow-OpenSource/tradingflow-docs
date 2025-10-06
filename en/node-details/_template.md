@@ -1,7 +1,5 @@
 # [Node Name]
 
-**🔄 English translation in progress**
-
 [Brief description of the node]
 
 ---
@@ -30,23 +28,18 @@
 **Core Features:**
 - Feature 1
 - Feature 2
-- Feature 3
 
 ---
 
 ## 📖 Full Documentation
 
-The complete English documentation for this node is currently being translated from the Chinese version.
+For detailed documentation including complete parameter descriptions, usage examples, and advanced features, please refer to:
 
-**For now, you can:**
-- View the [Chinese version](../../zh/node-details/[node-file].md)
-- Check the basic configuration in the frontend
-- Refer to the backend implementation
+- [Chinese version](../../zh/node-details/[node-name].md) - Complete documentation
+- Frontend configuration: `1_weather_frontend/src/pages/flow/components/TFNode/instances/[category]/[NodeName].tsx`
+- Backend implementation: `3_weather_cluster/tradingflow/station/nodes/[node_name].py`
 
 ---
 
-**Status:** 🔄 Translation in progress  
-**Priority:** Medium  
-**Expected completion:** Q4 2025
-
-For urgent inquiries, please contact the TradingFlow development team.
+**Maintained by:** TradingFlow Development Team  
+**Version:** 1.0.0

@@ -13,7 +13,7 @@
 全面介绍 Weather Station 的整体架构、核心概念和设计模式。
 
 **主要内容：**
-- TFL、DAG、Flow、Cycle、Node 核心概念
+- Weather Syntax、DAG、Flow、Cycle、Node 核心概念
 - 系统架构和分层设计
 - 关键组件介绍
 - 技术栈和设计模式

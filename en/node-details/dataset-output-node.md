@@ -1,7 +1,5 @@
 # Dataset Output Node
 
-**🔄 English translation in progress**
-
 Dataset Output Node writes data to Google Sheets documents for storage and visualization.
 
 ---
@@ -39,17 +37,13 @@ Dataset Output Node writes processed data to Google Sheets, enabling data persis
 
 ## 📖 Full Documentation
 
-The complete English documentation for this node is currently being translated from the Chinese version.
+For detailed documentation including complete parameter descriptions, usage examples, and advanced features, please refer to:
 
-**For now, you can:**
-- View the [Chinese version](../../zh/node-details/dataset-output-node.md) (~8,600 words)
-- Check the basic configuration in the frontend: `1_weather_frontend/src/pages/flow/components/TFNode/instances/outputs/DatasetOutputNode.tsx`
-- Refer to the backend implementation: `3_weather_cluster/tradingflow/station/nodes/dataset_node.py`
+- [Chinese version](../../zh/node-details/dataset-output-node.md) - Complete documentation (~8,600 words)
+- Frontend configuration: `1_weather_frontend/src/pages/flow/components/TFNode/instances/outputs/DatasetOutputNode.tsx`
+- Backend implementation: `3_weather_cluster/tradingflow/station/nodes/dataset_node.py`
 
 ---
 
-**Status:** 🔄 Translation in progress  
-**Priority:** Medium  
-**Expected completion:** Q4 2025
-
-For urgent inquiries, please contact the TradingFlow development team.
+**Maintained by:** TradingFlow Development Team  
+**Version:** 1.0.0

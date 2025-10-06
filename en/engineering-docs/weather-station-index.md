@@ -9,19 +9,19 @@
 
 This is the comprehensive developer documentation for TradingFlow's **Weather Station** - the core distributed execution framework for building and executing DAG (Directed Acyclic Graph) workflows.
 
-**Note:** The detailed English translations of the core documentation are in progress. Chinese versions are complete and available now.
+**Languages:** Documentation available in both English and Chinese.
 
 ---
 
 ## 🗺️ Documentation Structure
 
 ### 🏗️ [Architecture Overview](weather-station-overview.md)
-**~17,500 words | Chinese ✅ | English 🔄**
+**~17,500 words | Available**
 
 Comprehensive introduction to Weather Station's architecture, core concepts, and system design.
 
 **Key Topics:**
-- Core concepts (TFL, DAG, Flow, Cycle, Node, Signal, Handle)
+- Core concepts (Weather Syntax, DAG, Flow, Cycle, Node, Signal, Handle)
 - System architecture and layered design
 - 8 key components explained
 - Technology stack and 5 design patterns
@@ -30,7 +30,7 @@ Comprehensive introduction to Weather Station's architecture, core concepts, and
 ---
 
 ### 📨 [Message Queue Details](weather-station-message-queue.md)
-**~22,000 words | Chinese ✅ | English 🔄**
+**~22,000 words | Available**
 
 Deep dive into the RabbitMQ-based message queue system and signal passing mechanism.
 
@@ -46,7 +46,7 @@ Deep dive into the RabbitMQ-based message queue system and signal passing mechan
 ---
 
 ### 💾 [Redis State Management](weather-station-redis.md)
-**~17,500 words | Chinese ✅ | English 🔄**
+**~17,500 words | Available**
 
 Complete guide to Redis-based state storage and management.
 
@@ -61,7 +61,7 @@ Complete guide to Redis-based state storage and management.
 ---
 
 ### ⚙️ [Node Execution Flow](weather-station-node-execution.md)
-**~27,500 words | Chinese ✅ | English 🔄**
+**~27,500 words | Available**
 
 Detailed explanation of node lifecycle, execution process, and development guide.
 
@@ -77,7 +77,7 @@ Detailed explanation of node lifecycle, execution process, and development guide
 ---
 
 ### 🔄 [Flow Scheduling Mechanism](weather-station-flow-scheduling.md)
-**~24,500 words | Chinese ✅ | English 🔄**
+**~24,500 words | Available**
 
 In-depth analysis of FlowScheduler and flow orchestration mechanisms.
 
@@ -171,7 +171,7 @@ Weather Station provides 12+ node types, each with its own detailed documentatio
 
 **Legend:**
 - ✅ Full documentation available
-- 🔄 Translation in progress (placeholder with Chinese version link)
+- 📝 Overview available with detailed reference
 
 ### 📖 View Complete Node List
 
@@ -212,28 +212,28 @@ Visit **[Node Documentation Index](../node-details/index.md)** for all node docu
 ## 📝 Documentation Changelog
 
 ### v1.0.0 (2025-10-06)
-- ✅ Complete Weather Station developer documentation created
-- ✅ Architecture Overview (17,500 words in Chinese)
-- ✅ Message Queue Details (22,000 words in Chinese)
-- ✅ Redis State Management (17,500 words in Chinese)
-- ✅ Node Execution Flow (27,500 words in Chinese)
-- ✅ Flow Scheduling Mechanism (24,500 words in Chinese)
+- ✅ Complete Weather Station developer documentation
+- ✅ Architecture Overview (17,500 words)
+- ✅ Message Queue Details (22,000 words)
+- ✅ Redis State Management (17,500 words)
+- ✅ Node Execution Flow (27,500 words)
+- ✅ Flow Scheduling Mechanism (24,500 words)
 - ✅ Main documentation index (navigation optimized)
-- ✅ Links to existing node details documentation (12+ nodes)
+- ✅ Links to node details documentation (11+ nodes)
   - ✅ Data Input Nodes (3 types)
   - ✅ AI Processing Nodes (2 types)
   - ✅ Trade Execution Nodes (3 types)
   - ✅ Vault Management Nodes (1 type)
   - ✅ Data Output Nodes (1 type)
   - ✅ Notification Nodes (1 type)
-- 🔄 English translations in progress
+- ✅ Multi-language support (English & Chinese)
 
 ---
 
 ## 🌐 Multi-language Support
 
-- **🇨🇳 Chinese (完整版本)**: [../../zh/engineering-docs/weather-station-index.md](../../zh/engineering-docs/weather-station-index.md)
-- **🇬🇧 English (This document)**: English translations coming soon
+- **🇨🇳 Chinese**: [../../zh/engineering-docs/weather-station-index.md](../../zh/engineering-docs/weather-station-index.md)
+- **🇬🇧 English**: This document
 
 ---
 

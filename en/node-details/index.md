@@ -56,14 +56,14 @@ Welcome to TradingFlow's node usage documentation. Each node has detailed parame
 | Status | Meaning |
 |--------|---------|
 | ✅ | Full documentation available |
-| 🔄 | Translation in progress - placeholder available |
+| 📝 | Overview available, detailed docs in Chinese |
 
 **Current Status:**
-- **Fully documented:** 1 node (Binance Price Node)
-- **In translation:** 9 nodes
+- **Full English documentation:** 1 node (Binance Price Node)
+- **Overview with Chinese reference:** 9 nodes
 - **Total nodes:** 10 nodes
 
-For the most comprehensive documentation, please refer to the [Chinese version](../../zh/node-details/index.md) which includes all 12 nodes with complete details.
+All nodes include overview, node information, and functionality description in English. For comprehensive documentation with detailed examples and advanced features, Chinese versions are available.
 
 ---
 

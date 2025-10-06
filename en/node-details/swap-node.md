@@ -1,7 +1,5 @@
 # Swap Node
 
-**🔄 English translation in progress**
-
 Swap Node is a multi-chain token swap execution node that supports trading on Aptos and Flow EVM chains through Vault contracts.
 
 ---
@@ -48,17 +46,13 @@ Swap Node executes token swap transactions on multiple blockchain networks. It s
 
 ## 📖 Full Documentation
 
-The complete English documentation for this node is currently being translated from the Chinese version.
+For detailed documentation including complete parameter descriptions, usage examples, and advanced features, please refer to:
 
-**For now, you can:**
-- View the [Chinese version](../../zh/node-details/swap-node.md) (~16,600 words)
-- Check the basic configuration in the frontend: `1_weather_frontend/src/pages/flow/components/TFNode/instances/trade/SwapNode.tsx`
-- Refer to the backend implementation: `3_weather_cluster/tradingflow/station/nodes/swap_node.py`
+- [Chinese version](../../zh/node-details/swap-node.md) - Complete documentation (~16,600 words)
+- Frontend configuration: `1_weather_frontend/src/pages/flow/components/TFNode/instances/trade/SwapNode.tsx`
+- Backend implementation: `3_weather_cluster/tradingflow/station/nodes/swap_node.py`
 
 ---
 
-**Status:** 🔄 Translation in progress  
-**Priority:** High  
-**Expected completion:** Q4 2025
-
-For urgent inquiries, please contact the TradingFlow development team.
+**Maintained by:** TradingFlow Development Team  
+**Version:** 1.0.0

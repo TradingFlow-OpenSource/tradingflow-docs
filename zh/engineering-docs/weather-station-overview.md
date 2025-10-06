@@ -39,9 +39,9 @@ Weather Station 是 TradingFlow 的核心工作流执行引擎，负责：
 
 ## 核心概念
 
-### 1. TFL (TradingFlow Language)
+### 1. Weather Syntax (Weather 语法)
 
-TFL 是 TradingFlow 的智能交易语言，用 JSON 格式描述工作流。
+Weather Syntax 是 TradingFlow 的智能交易语言，用 JSON 格式描述工作流。
 
 **基本结构：**
 ```json
@@ -66,14 +66,14 @@ TFL 是 TradingFlow 的智能交易语言，用 JSON 格式描述工作流。
 
 ### 2. DAG (有向无环图)
 
-- **定义**：TFL 中的节点和边构成 DAG
-- **连通分量**：一个 TFL 可包含多个 DAG（连通分量）
+- **定义**：Weather Syntax 中的节点和边构成 DAG
+- **连通分量**：一个 Flow 可包含多个 DAG（连通分量）
 - **Component ID**：每个连通分量有唯一 ID，用于隔离控制
 
 ### 3. Flow、Cycle、Node
 
 ```
-TFL (静态描述)
+Weather Syntax (静态描述)
     └─ Flow (运行实例)
            └─ Cycle 0 (第 1 次执行)
            │     └─ Node A, Node B, Node C...
@@ -82,9 +82,9 @@ TFL (静态描述)
 ```
 
 **关键概念：**
-- **Flow ID**：一个 TFL 的唯一运行实例标识
+- **Flow ID**：一个 Flow 的唯一运行实例标识
 - **Cycle**：Flow 的执行周期号，从 0 开始自增
-- **Node ID**：TFL 中节点的唯一标识
+- **Node ID**：Flow 中节点的唯一标识
 - **Node Task ID**：格式为 `{flow_id}_{cycle}_{node_id}`，标识一次具体的节点执行
 
 ### 4. Signal（信号）
@@ -180,7 +180,7 @@ handle_id = f"{field_name}"  # 不包含 -handle 后缀
 | 层级 | 组件 | 职责 |
 |------|------|------|
 | **调度层** | FlowScheduler | Flow生命周期管理、周期调度 |
-| **编排层** | FlowParser | TFL解析、DAG分析、连通分量识别 |
+| **编排层** | FlowParser | Weather Syntax解析、DAG分析、连通分量识别 |
 | **执行层** | NodeExecutor, NodeBase | 节点创建、执行、生命周期管理 |
 | **通信层** | NodeSignalPublisher/Consumer | 信号发布订阅、消息路由 |
 | **存储层** | StateStore, NodeTaskManager | 状态持久化、任务管理 |
@@ -226,7 +226,7 @@ def get_scheduler_instance():
 **位置：** `tradingflow/station/flow/flow_parser.py` (216 行)
 
 **核心职责：**
-- TFL JSON 解析
+- Weather Syntax JSON 解析
 - 连通分量识别
 - DAG 环检测
 - Entry Nodes 识别
@@ -527,7 +527,7 @@ PENDING → RUNNING → COMPLETED
 1. Flow 注册
    FlowScheduler.register_flow()
       ↓
-   分析 TFL 结构（FlowParser）
+   分析 Weather Syntax 结构（FlowParser）
       ↓
    存储 Flow 配置到 Redis
 

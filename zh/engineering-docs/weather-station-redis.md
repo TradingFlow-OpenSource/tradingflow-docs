@@ -103,7 +103,7 @@
 | 字段 | 类型 | 说明 | 示例 |
 |------|------|------|------|
 | `id` | string | Flow ID | `trading_decision_flow` |
-| `config` | JSON string | Flow 配置（TFL JSON） | `{"nodes":[...],"edges":[...]}` |
+| `config` | JSON string | Flow 配置（Weather Syntax JSON） | `{"nodes":[...],"edges":[...]}` |
 | `structure` | JSON string | DAG 结构分析结果 | `{"components":{...},"entry_nodes":[...]}` |
 | `status` | string | 状态 | `registered`, `running`, `stopped`, `completed` |
 | `last_cycle` | int | 最后执行的 Cycle | `0`, `1`, `2` |

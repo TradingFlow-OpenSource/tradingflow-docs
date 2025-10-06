@@ -54,7 +54,7 @@ Each node has its own detailed documentation page with complete parameter descri
 
 ## 🚀 Recommended Reading Paths
 
-### Investor/Product Manager Path (~1 hour)
+### Business Users/Product Managers (~1 hour)
 
 ```
 1. weather-station-index.md           # Understand trading engine capabilities
@@ -90,23 +90,23 @@ Each node has its own detailed documentation page with complete parameter descri
 
 | Document | Words | Status |
 |----------|-------|--------|
-| Engine Architecture Overview | 17,500 | ✅ Complete (Chinese) |
-| Trading Signal Transmission | 22,000 | ✅ Complete (Chinese) |
-| State Management System | 17,500 | ✅ Complete (Chinese) |
-| Node Execution Flow | 27,500 | ✅ Complete (Chinese) |
-| Strategy Scheduling Mechanism | 24,500 | ✅ Complete (Chinese) |
-| **Total** | **~109,000** | **🔄 English translation in progress** |
+| Engine Architecture Overview | 17,500 | ✅ Available |
+| Trading Signal Transmission | 22,000 | ✅ Available |
+| State Management System | 17,500 | ✅ Available |
+| Strategy Scheduling Mechanism | 24,500 | ✅ Available |
+| **Total** | **~109,000** | **All Complete** |
 
 ### Trading Node Documentation
 
-| Category | English Docs |
-|----------|--------------|
-| Data Collection Nodes | 1 page |
-| AI Intelligence Analysis | Coming soon |
-| Trade Execution Nodes | Coming soon |
-| Asset Management Nodes | Coming soon |
-| Data Output Nodes | Coming soon |
-| Message Notification Nodes | Coming soon |
+| Category | Documentation |
+|----------|---------------|
+| Data Collection Nodes | 3 nodes |
+| AI Intelligence Analysis | 2 nodes |
+| Trade Execution Nodes | 3 nodes |
+| Asset Management Nodes | 1 node |
+| Data Output Nodes | 1 node |
+| Message Notification Nodes | 1 node |
+| **Total** | **11 nodes** |
 
 ---
 
@@ -123,7 +123,7 @@ Each node has its own detailed documentation page with complete parameter descri
 
 ### By Role
 
-**Investors/Product Managers:**
+**Business Users/Product Managers:**
 ```
 Main Index → Engine Architecture → Trading Node Capabilities
 ```
@@ -164,8 +164,8 @@ State Management System → Scheduling Mechanism → Execution Flow Monitoring
 
 This documentation is available in multiple languages:
 
-- **🇨🇳 中文版本**: [../zh/engineering-docs/README.md](../../zh/engineering-docs/README.md)
-- **🇬🇧 English Version**: This document (English translation in progress)
+- **🇨🇳 Chinese**: [../zh/engineering-docs/README.md](../../zh/engineering-docs/README.md)
+- **🇬🇧 English**: This document
 
 ---
 

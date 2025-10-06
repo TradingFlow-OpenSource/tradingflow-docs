@@ -1,7 +1,5 @@
 # Sell Node
 
-**🔄 English translation in progress**
-
 Sell Node is a specialized trading node for executing sell operations on multi-chain networks.
 
 ---
@@ -39,17 +37,13 @@ Sell Node is a specialized version of Swap Node designed specifically for sell o
 
 ## 📖 Full Documentation
 
-The complete English documentation for this node is currently being translated from the Chinese version.
+For detailed documentation including complete parameter descriptions, usage examples, and advanced features, please refer to:
 
-**For now, you can:**
-- View the [Chinese version](../../zh/node-details/sell-node.md) (~11,000 words)
-- Check the basic configuration in the frontend: `1_weather_frontend/src/pages/flow/components/TFNode/instances/trade/SellNode.tsx`
-- Refer to the backend implementation: `3_weather_cluster/tradingflow/station/nodes/swap_node.py`
+- [Chinese version](../../zh/node-details/sell-node.md) - Complete documentation (~11,000 words)
+- Frontend configuration: `1_weather_frontend/src/pages/flow/components/TFNode/instances/trade/SellNode.tsx`
+- Backend implementation: `3_weather_cluster/tradingflow/station/nodes/swap_node.py`
 
 ---
 
-**Status:** 🔄 Translation in progress  
-**Priority:** Medium  
-**Expected completion:** Q4 2025
-
-For urgent inquiries, please contact the TradingFlow development team.
+**Maintained by:** TradingFlow Development Team  
+**Version:** 1.0.0

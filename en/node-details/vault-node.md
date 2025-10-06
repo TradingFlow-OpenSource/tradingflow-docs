@@ -1,7 +1,5 @@
 # Vault Node
 
-**🔄 English translation in progress**
-
 Vault Node is a Vault management node that queries asset information, balances, and portfolio details from on-chain Vault contracts.
 
 ---
@@ -45,17 +43,13 @@ Vault Node connects to on-chain Vault contracts to retrieve real-time asset info
 
 ## 📖 Full Documentation
 
-The complete English documentation for this node is currently being translated from the Chinese version.
+For detailed documentation including complete parameter descriptions, usage examples, and advanced features, please refer to:
 
-**For now, you can:**
-- View the [Chinese version](../../zh/node-details/vault-node.md) (~13,400 words)
-- Check the basic configuration in the frontend: `1_weather_frontend/src/pages/flow/components/TFNode/instances/inputs/VaultNode.tsx`
-- Refer to the backend implementation: `3_weather_cluster/tradingflow/station/nodes/vault_node.py`
+- [Chinese version](../../zh/node-details/vault-node.md) - Complete documentation (~13,400 words)
+- Frontend configuration: `1_weather_frontend/src/pages/flow/components/TFNode/instances/inputs/VaultNode.tsx`
+- Backend implementation: `3_weather_cluster/tradingflow/station/nodes/vault_node.py`
 
 ---
 
-**Status:** 🔄 Translation in progress  
-**Priority:** High  
-**Expected completion:** Q4 2025
-
-For urgent inquiries, please contact the TradingFlow development team.
+**Maintained by:** TradingFlow Development Team  
+**Version:** 1.0.0

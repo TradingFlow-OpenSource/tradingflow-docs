@@ -85,7 +85,7 @@ async def register_flow(self, flow_id: str, flow_config: Dict):
     
     Args:
         flow_id: Flow 唯一标识
-        flow_config: Flow 配置（TFL JSON）
+        flow_config: Flow 配置（Weather Syntax JSON）
             - interval: 执行间隔（秒）
             - nodes: 节点列表
             - edges: 边列表
@@ -124,7 +124,7 @@ async def register_flow(self, flow_id: str, flow_config: Dict):
     return flow_data
 ```
 
-### TFL 配置结构
+### Weather Syntax 配置结构
 
 ```json
 {
@@ -167,7 +167,7 @@ async def register_flow(self, flow_id: str, flow_config: Dict):
 # tradingflow/station/flow/flow_parser.py
 
 class FlowParser:
-    """Flow 解析器：解析 TFL 并识别 DAG 结构"""
+    """Flow 解析器：解析 Weather Syntax 并识别 DAG 结构"""
     
     def __init__(self, flow_json: dict):
         """初始化解析器"""

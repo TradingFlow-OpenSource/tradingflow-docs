@@ -1,7 +1,5 @@
 # X Listener Node
 
-**🔄 English translation in progress**
-
 X Listener Node monitors Twitter/X social media platform for tweets from specific accounts or keywords.
 
 ---
@@ -38,17 +36,13 @@ X Listener Node fetches tweets from specified Twitter/X accounts, filters by key
 
 ## 📖 Full Documentation
 
-The complete English documentation for this node is currently being translated from the Chinese version.
+For detailed documentation including complete parameter descriptions, usage examples, and advanced features, please refer to:
 
-**For now, you can:**
-- View the [Chinese version](../../zh/node-details/x-listener-node.md) (~15,500 words)
-- Check the basic configuration in the frontend: `1_weather_frontend/src/pages/flow/components/TFNode/instances/inputs/XListenerNode.tsx`
-- Refer to the backend implementation: `3_weather_cluster/tradingflow/station/nodes/x_listener_node.py`
+- [Chinese version](../../zh/node-details/x-listener-node.md) - Complete documentation (~15,500 words)
+- Frontend configuration: `1_weather_frontend/src/pages/flow/components/TFNode/instances/inputs/XListenerNode.tsx`
+- Backend implementation: `3_weather_cluster/tradingflow/station/nodes/x_listener_node.py`
 
 ---
 
-**Status:** 🔄 Translation in progress  
-**Priority:** High  
-**Expected completion:** Q4 2025
-
-For urgent inquiries, please contact the TradingFlow development team.
+**Maintained by:** TradingFlow Development Team  
+**Version:** 1.0.0
