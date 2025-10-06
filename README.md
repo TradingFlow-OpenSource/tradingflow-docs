@@ -67,8 +67,8 @@ Each language space contains:
 
 ---
 
-## 🔗 Setup Instructions | 设置说明
+## 📝 Documentation Standards | 文档规范
 
-For maintainers: See [MULTILANG_SETUP.md](MULTILANG_SETUP.md) for details on how to configure multiple GitBook spaces.
+For contributors and maintainers, please refer to our [Writing Style Guide](WRITING_STYLE_GUIDE.md) to maintain consistency across all documentation.
 
-维护者请查看 [MULTILANG_SETUP.md](MULTILANG_SETUP.md) 了解如何配置多个 GitBook 空间的详细信息。
+贡献者和维护者请参考 [书写风格指南](WRITING_STYLE_GUIDE.md) 以保持所有文档的一致性。

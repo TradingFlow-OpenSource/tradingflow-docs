@@ -1,52 +1,26 @@
 # Decentralized Account System
 
-## 🌐 Multi-Identity Compatibility
+We recognize that in the Web3 world, a user may have multiple third-party platform identities (for example, a person can have multiple Google accounts, Microsoft accounts, wallet addresses, etc.). Our account system accommodates this multi-identity nature.
 
-We recognize that in the Web3 world, users often have multiple third-party platform identities, such as:
-- Multiple Google accounts
-- Multiple Microsoft accounts
-- Multiple wallet addresses
-- Other authentication identities
+When a user logs in for the first time through an authentication identity (ID), the platform automatically creates a TradingFlow Account for that user and identity. While logged in with that account, users can bind more identities in the Vault Page, such as linking their other wallets/addresses. This way, when logging in next time with a non-initial identity, they will automatically be logged into the same account.
 
-TradingFlow's account system perfectly accommodates this **multi-identity** requirement.
+## Account Binding Rules
 
-## 📝 Relationship Between Accounts and Identities
+In summary, a user's first login creates an account, one account can bind multiple identities, and any single identity can only be bound to one account. If rebinding is needed, the extra account must be deactivated first, and then the target identity can be bound in the target account.
 
-### First-Time Login
-When a user logs in for the first time with an authentication identity (ID), the platform automatically creates a **TradingFlow Account** for that user and identity.
+This design provides users with great flexibility. Users don't need to remember specific account-password combinations, but can log in through any bound identity. The system automatically recognizes the identity and navigates to the correct account while maintaining consistency of all data and configurations.
 
-### Binding More Identities
-After logging in, users can bind more identities in the **Vault Page**, such as:
-- Binding other wallet addresses
-- Linking other social accounts
+## Practical Application Scenarios
 
-This way, when logging in with a non-initial identity next time, they will automatically access the same account.
+Through this built-in "decentralized identity" account model, users can conveniently isolate funds and switch identities. For example, a user might have meme strategy workflows as well as Bitcoin DCA workflows.
 
-### Core Rules
+Both sets of funds can be managed through on-chain vaults created from different addresses under one account. This not only avoids repeatedly switching accounts but also enables logging back into the same account through any wallet, providing the most convenient operation for users.
 
-- **One User** → First login creates one account
-- **One Account** → Can bind multiple identities
-- **One Identity** → Can only bind to one account
+The advantages of this architecture include:
 
-> 💡 **Tip:** If you need to rebind, you must first deactivate the extra account, then bind the target identity in the target account.
-
-## 🎯 Practical Use Cases
-
-### Fund Isolation
-Through this "decentralized identity" account model, users can conveniently isolate funds and switch identities.
-
-**Case:** A user might have:
-- **Meme Strategy Workflow** - Managed with vault from address A
-- **Bitcoin DCA Workflow** - Managed with vault from address B
-
-Both funds are managed through on-chain vaults created from different addresses under the same account.
-
-### Convenient Operations
-Benefits of this design:
-- ✅ Avoid repeatedly switching accounts
-- ✅ Access the same account through any wallet
-- ✅ Flexibly manage multiple strategies and assets
-- ✅ Most user-friendly operation experience
+- Users can use different wallet addresses for different investment strategies, achieving risk isolation
+- All strategies and configurations are unified under one account, facilitating monitoring and adjustments
+- Support for quick access from any bound identity, improving operational convenience
 
 ---
 
