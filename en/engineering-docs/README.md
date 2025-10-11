@@ -34,7 +34,10 @@ Weather Station is TradingFlow's core trading execution engine, providing **high
 ├── weather-station-message-queue.md      # 📨 Trading Signal Transmission
 ├── weather-station-redis.md              # 💾 State Management System
 ├── weather-station-node-execution.md     # ⚙️ Trading Node Execution Flow
-└── weather-station-flow-scheduling.md    # 🔄 Strategy Scheduling Mechanism
+├── weather-station-flow-scheduling.md    # 🔄 Strategy Scheduling Mechanism
+├── community-nodes-system.md             # 🌐 Community Nodes & Version Control
+├── quest-system.md                       # 🎮 Quest System & Gamification
+└── co-trading-system.md                  # 👥 Co-Trading (Social Trading Platform)
 ```
 
 ### Node Details Documentation (Separate Pages)
@@ -119,6 +122,9 @@ Each node has its own detailed documentation page with complete parameter descri
 - **State Storage**: [weather-station-redis.md](weather-station-redis.md)
 - **Node Development**: [weather-station-node-execution.md](weather-station-node-execution.md)
 - **Scheduling**: [weather-station-flow-scheduling.md](weather-station-flow-scheduling.md)
+- **Community Nodes**: [community-nodes-system.md](community-nodes-system.md)
+- **Quest System**: [quest-system.md](quest-system.md)
+- **Co-Trading**: [co-trading-system.md](co-trading-system.md)
 - **Node Details**: [../node-details/index.md](../node-details/index.md)
 
 ### By Role
@@ -143,6 +149,11 @@ Architecture Overview → Signal Transmission → State Management → Schedulin
 State Management System → Scheduling Mechanism → Execution Flow Monitoring
 ```
 
+**Community Contributors:**
+```
+Community Nodes System → Node Creation Guide → Publishing & Sharing
+```
+
 ---
 
 ## 📖 Related Resources
@@ -152,11 +163,16 @@ State Management System → Scheduling Mechanism → Execution Flow Monitoring
 - **Node Base Class**: `3_weather_cluster/tradingflow/station/nodes/node_base.py`
 - **Scheduler**: `3_weather_cluster/tradingflow/station/flow/scheduler.py`
 - **Message Queue**: `4_weather_depot/tradingflow/depot/python/mq/`
+- **Community Nodes (Station)**: `03_weather_station/core/` (version_manager, node_registry, community_node_executor)
+- **Community Nodes (Control)**: `02_weather_control/src/models/`, `src/services/`, `src/routes/community/`
+- **Community Nodes (Frontend)**: `01_weather_frontend/src/pages/` (CommunityNodesPage, CommunityNodeDetailPage)
 
 ### API Endpoints
 - Weather Control API: `http://localhost:8000/api/v1/flow/*`
 - Worker API: `http://localhost:8080/execute`
 - Node List API: `http://localhost:8000/api/v1/nodes/types`
+- Community Nodes API: `http://localhost:8000/api/v1/community/nodes`
+- Community Comments API: `http://localhost:8000/api/v1/community/nodes/:nodeId/comments`
 
 ---
 

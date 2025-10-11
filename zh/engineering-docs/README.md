@@ -34,7 +34,10 @@ Weather Station 是 TradingFlow 的核心交易执行引擎，为量化交易策
 ├── weather-station-message-queue.md      # 📨 交易信号传递机制
 ├── weather-station-redis.md              # 💾 状态管理系统
 ├── weather-station-node-execution.md     # ⚙️ 交易节点执行流程
-└── weather-station-flow-scheduling.md    # 🔄 策略调度机制
+├── weather-station-flow-scheduling.md    # 🔄 策略调度机制
+├── community-nodes-system.md             # 🌐 社区节点与版本控制
+├── quest-system.md                       # 🎮 任务系统与游戏化
+└── co-trading-system.md                  # 👥 共同投资（社交交易平台）
 ```
 
 ### 节点详情文档（独立页面）
@@ -137,6 +140,9 @@ Weather Station 是 TradingFlow 的核心交易执行引擎，为量化交易策
 - **状态存储**: [weather-station-redis.md](weather-station-redis.md)
 - **节点开发**: [weather-station-node-execution.md](weather-station-node-execution.md)
 - **调度机制**: [weather-station-flow-scheduling.md](weather-station-flow-scheduling.md)
+- **社区节点**: [community-nodes-system.md](community-nodes-system.md)
+- **任务系统**: [quest-system.md](quest-system.md)
+- **共同投资**: [co-trading-system.md](co-trading-system.md)
 - **节点详情**: [../zh/node-details/index.md](../zh/node-details/index.md)
 
 ### 按角色查找
@@ -161,6 +167,11 @@ Weather Station 是 TradingFlow 的核心交易执行引擎，为量化交易策
 状态管理系统 → 调度机制 → 执行流程监控
 ```
 
+**社区贡献者：**
+```
+社区节点系统 → 节点创建指南 → 发布与分享
+```
+
 ---
 
 ## 🔍 快速查询
@@ -170,6 +181,7 @@ Weather Station 是 TradingFlow 的核心交易执行引擎，为量化交易策
 | 问题 | 文档位置 |
 |------|---------|
 | 如何创建新节点？ | [节点执行流程 - 开发新节点](weather-station-node-execution.md#开发新节点) |
+| 如何创建社区节点？ | [社区节点系统 - 用户指南](community-nodes-system.md#用户指南如何参与) |
 | 信号如何传递？ | [消息队列详解 - 信号传递流程](weather-station-message-queue.md#信号传递流程) |
 | Redis 键如何设计？ | [Redis 状态管理 - Key 命名规范](weather-station-redis.md#key-命名规范) |
 | Flow 如何调度？ | [Flow 调度机制 - 周期调度](weather-station-flow-scheduling.md#周期调度) |
@@ -186,6 +198,7 @@ Weather Station 是 TradingFlow 的核心交易执行引擎，为量化交易策
 | 读取 Google Sheets | [Dataset Input Node](../zh/node-details/dataset-input-node.md) |
 | 写入 Google Sheets | [Dataset Output Node](../zh/node-details/dataset-output-node.md) |
 | 发送通知 | [Telegram Sender Node](../zh/node-details/telegram-sender-node.md) |
+| 创建并分享自定义节点 | [Community Nodes System](community-nodes-system.md) |
 
 ---
 
@@ -196,11 +209,16 @@ Weather Station 是 TradingFlow 的核心交易执行引擎，为量化交易策
 - **节点基类**: `3_weather_cluster/tradingflow/station/nodes/node_base.py`
 - **调度器**: `3_weather_cluster/tradingflow/station/flow/scheduler.py`
 - **消息队列**: `4_weather_depot/tradingflow/depot/python/mq/`
+- **社区节点（Station）**: `03_weather_station/core/` (version_manager, node_registry, community_node_executor)
+- **社区节点（Control）**: `02_weather_control/src/models/`, `src/services/`, `src/routes/community/`
+- **社区节点（Frontend）**: `01_weather_frontend/src/pages/` (CommunityNodesPage, CommunityNodeDetailPage)
 
 ### API 端点
 - Weather Control API: `http://localhost:8000/api/v1/flow/*`
 - Worker API: `http://localhost:8080/execute`
 - 节点列表 API: `http://localhost:8000/api/v1/nodes/types`
+- 社区节点 API: `http://localhost:8000/api/v1/community/nodes`
+- 社区节点评论 API: `http://localhost:8000/api/v1/community/nodes/:nodeId/comments`
 
 ---
 
