@@ -6,13 +6,13 @@ Binance Price Node is a data input node used to fetch real-time market data from
 
 ## Node Information
 
-| Property | Value |
-|----------|-------|
-| **Node Type** | `binance_price_node` |
-| **Display Name** | Binance Price |
-| **Node Category** | Input (Data Input) |
-| **Icon** | 🕯️ Candlestick Chart Icon |
-| **Handle Color** | Amber (Orange) |
+| Property          | Value                     |
+| ----------------- | ------------------------- |
+| **Node Type**     | `binance_price_node`      |
+| **Display Name**  | Binance Price             |
+| **Node Category** | Input (Data Input)        |
+| **Icon**          | 🕯️ Candlestick Chart Icon |
+| **Handle Color**  | Amber (Orange)            |
 
 ---
 
@@ -21,6 +21,7 @@ Binance Price Node is a data input node used to fetch real-time market data from
 Binance Price Node fetches historical K-line data and current price for specified trading pairs through Binance API. The node supports multiple time intervals (from 1 minute to 1 year) and allows specification of the number of K-lines to retrieve.
 
 **Main Uses:**
+
 - Fetch cryptocurrency price data for technical analysis
 - Monitor price changes for specific trading pairs
 - Provide real-time market data for trading strategies
@@ -32,40 +33,40 @@ Binance Price Node fetches historical K-line data and current price for specifie
 
 ### Parameter List
 
-| Parameter | Type | Required | Default | Range/Options | Description |
-|-----------|------|----------|---------|---------------|-------------|
-| `symbol` | searchSelect | ✅ | `BTCUSDT` | See trading pairs list | Trading pair symbol to query |
-| `interval` | searchSelect | ✅ | `1m` | See interval list | K-line time interval |
-| `limit` | number | ❌ | `100` | 1-1000 | Number of K-lines to fetch |
+| Parameter  | Type         | Required | Default   | Range/Options          | Description                  |
+| ---------- | ------------ | -------- | --------- | ---------------------- | ---------------------------- |
+| `symbol`   | searchSelect | ✅       | `BTCUSDT` | See trading pairs list | Trading pair symbol to query |
+| `interval` | searchSelect | ✅       | `1m`      | See interval list      | K-line time interval         |
+| `limit`    | number       | ❌       | `100`     | 1-1000                 | Number of K-lines to fetch   |
 
 ### Supported Trading Pairs
 
-| Pair | Display Name | Description |
-|------|-------------|-------------|
-| `BTCUSDT` | BTC/USDT | Bitcoin to USDT |
-| `BTCUSDC` | BTC/USDC | Bitcoin to USDC |
-| `ETHUSDT` | ETH/USDT | Ethereum to USDT |
-| `ETHUSDC` | ETH/USDC | Ethereum to USDC |
-| `ETHBTC` | ETH/BTC | Ethereum to Bitcoin |
-| `APTUSDT` | APT/USDT | Aptos to USDT |
-| `APTUSDC` | APT/USDC | Aptos to USDC |
-| `APTxBTC` | APT/xBTC | Aptos to xBTC |
-| `USDCUSDT` | USDC/USDT | USDC to USDT |
+| Pair       | Display Name | Description         |
+| ---------- | ------------ | ------------------- |
+| `BTCUSDT`  | BTC/USDT     | Bitcoin to USDT     |
+| `BTCUSDC`  | BTC/USDC     | Bitcoin to USDC     |
+| `ETHUSDT`  | ETH/USDT     | Ethereum to USDT    |
+| `ETHUSDC`  | ETH/USDC     | Ethereum to USDC    |
+| `ETHBTC`   | ETH/BTC      | Ethereum to Bitcoin |
+| `APTUSDT`  | APT/USDT     | Aptos to USDT       |
+| `APTUSDC`  | APT/USDC     | Aptos to USDC       |
+| `APTxBTC`  | APT/xBTC     | Aptos to xBTC       |
+| `USDCUSDT` | USDC/USDT    | USDC to USDT        |
 
-*Note: Available trading pairs depend on Binance exchange support.*
+_Note: Available trading pairs depend on Binance exchange support._
 
 ### Time Interval Options
 
-| Value | Display Name | Description |
-|-------|-------------|-------------|
-| `1m` | 1 minute | 1-minute K-line |
-| `1h` | 1 hour | 1-hour K-line |
-| `1d` | 1 day | 1-day K-line |
-| `1w` | 1 week | 1-week K-line |
-| `1M` | 1 month | 1-month K-line |
-| `1y` | 1 year | 1-year K-line |
+| Value | Display Name | Description     |
+| ----- | ------------ | --------------- |
+| `1m`  | 1 minute     | 1-minute K-line |
+| `1h`  | 1 hour       | 1-hour K-line   |
+| `1d`  | 1 day        | 1-day K-line    |
+| `1w`  | 1 week       | 1-week K-line   |
+| `1M`  | 1 month      | 1-month K-line  |
+| `1y`  | 1 year       | 1-year K-line   |
 
-*Binance API also supports other intervals like 3m, 5m, 15m, 30m, 2h, 4h, 6h, 8h, 12h, 3d, etc., but not all are listed in the frontend interface.*
+_Binance API also supports other intervals like 3m, 5m, 15m, 30m, 2h, 4h, 6h, 8h, 12h, 3d, etc., but not all are listed in the frontend interface._
 
 ---
 
@@ -73,28 +74,11 @@ Binance Price Node fetches historical K-line data and current price for specifie
 
 ### Output List
 
-| Output ID | Display Name | Data Type | Description |
-|-----------|-------------|-----------|-------------|
-| `current_price` | Current Price | number | Current price of the trading pair |
-| `kline_data` | Kline Data | object | Complete K-line data object |
+| Output ID | Display Name | Data Type | Description                                                         |
+| --------- | ------------ | --------- | ------------------------------------------------------------------- |
+| `data`    | Data         | object    | Complete market data object including current price and K-line data |
 
-### current_price Output
-
-**Data Type:** `number` (number in string format)
-
-**Example:**
-```json
-"95847.21000000"
-```
-
-**Description:** 
-- Represents the latest trade price of the trading pair
-- From Binance API's `get_symbol_ticker` endpoint
-- Precision depends on the trading pair's price precision settings
-
----
-
-### kline_data Output
+### data Output
 
 **Data Type:** `object`
 
@@ -155,19 +139,19 @@ Binance Price Node fetches historical K-line data and current price for specifie
 
 ### K-line Data Field Descriptions
 
-| Index | Field Name | Data Type | Description |
-|-------|-----------|-----------|-------------|
-| 0 | `open_time` | number | Opening time (Unix millisecond timestamp) |
-| 1 | `open` | string | Opening price |
-| 2 | `high` | string | Highest price |
-| 3 | `low` | string | Lowest price |
-| 4 | `close` | string | Closing price |
-| 5 | `volume` | string | Trading volume (base currency, e.g., BTC) |
-| 6 | `close_time` | number | Closing time (Unix millisecond timestamp) |
-| 7 | `quote_volume` | string | Trading amount (quote currency, e.g., USDT) |
-| 8 | `count` | number | Number of trades |
-| 9 | `taker_buy_volume` | string | Taker buy volume |
-| 10 | `taker_buy_quote_volume` | string | Taker buy quote volume |
+| Index | Field Name               | Data Type | Description                                 |
+| ----- | ------------------------ | --------- | ------------------------------------------- |
+| 0     | `open_time`              | number    | Opening time (Unix millisecond timestamp)   |
+| 1     | `open`                   | string    | Opening price                               |
+| 2     | `high`                   | string    | Highest price                               |
+| 3     | `low`                    | string    | Lowest price                                |
+| 4     | `close`                  | string    | Closing price                               |
+| 5     | `volume`                 | string    | Trading volume (base currency, e.g., BTC)   |
+| 6     | `close_time`             | number    | Closing time (Unix millisecond timestamp)   |
+| 7     | `quote_volume`           | string    | Trading amount (quote currency, e.g., USDT) |
+| 8     | `count`                  | number    | Number of trades                            |
+| 9     | `taker_buy_volume`       | string    | Taker buy volume                            |
+| 10    | `taker_buy_quote_volume` | string    | Taker buy quote volume                      |
 
 ---
 
@@ -175,18 +159,18 @@ Binance Price Node fetches historical K-line data and current price for specifie
 
 ### Sent Signals
 
-**Signal Handle:** `kline_data`
+**Signal Handle:** `data`
 
 **Signal Type:** `SignalType.PRICE_DATA`
 
-**Signal Payload:** Complete K-line data object (see kline_data output structure above)
+**Signal Payload:** Complete market data object including trading pair, K-line data, and current price (see data output structure above)
 
 ### Signal Flow Example
 
 ```
 Binance Price Node
-    ↓ (kline_data signal)
-    ↓ payload: { symbol, interval, kline_data, current_price, ... }
+    ↓ (data signal)
+    ↓ payload: { symbol, interval, limit, header, kline_data, current_price }
     ↓
 Other Nodes (e.g., Code Node, AI Model Node, etc.)
 ```
@@ -213,8 +197,8 @@ Other Nodes (e.g., Code Node, AI Model Node, etc.)
    └─ Build complete output object
 
 4. Send Signal
-   ├─ Send PRICE_DATA signal through kline_data handle
-   └─ Pass complete data object to downstream nodes
+   ├─ Send PRICE_DATA signal through data handle
+   └─ Pass complete market data object (including K-line data and current price) to downstream nodes
 
 5. Complete
    └─ Set node status to COMPLETED
@@ -224,12 +208,12 @@ Other Nodes (e.g., Code Node, AI Model Node, etc.)
 
 The node has comprehensive error handling mechanisms:
 
-| Error Type | Handling Method | Retry Count |
-|-----------|----------------|-------------|
-| API Connection Failed | Exponential backoff retry (1s, 2s, 4s) | 3 times |
-| API Call Exception | Log error, set node status to FAILED | 0 times |
-| Data Fetch Failed | Log warning, set node status to FAILED | 0 times |
-| Task Cancelled | Set status to TERMINATED, cleanup resources | N/A |
+| Error Type            | Handling Method                             | Retry Count |
+| --------------------- | ------------------------------------------- | ----------- |
+| API Connection Failed | Exponential backoff retry (1s, 2s, 4s)      | 3 times     |
+| API Call Exception    | Log error, set node status to FAILED        | 0 times     |
+| Data Fetch Failed     | Log warning, set node status to FAILED      | 0 times     |
+| Task Cancelled        | Set status to TERMINATED, cleanup resources | N/A         |
 
 ---
 
@@ -240,6 +224,7 @@ The node has comprehensive error handling mechanisms:
 **Scenario:** Monitor BTC/USDT 1-hour K-lines, fetch last 50 K-lines for trend analysis.
 
 **Configuration:**
+
 ```json
 {
   "symbol": "BTCUSDT",
@@ -249,9 +234,10 @@ The node has comprehensive error handling mechanisms:
 ```
 
 **Workflow Connection:**
+
 ```
 Binance Price Node (BTCUSDT, 1h)
-    ↓ kline_data
+    ↓ data
 Code Node (Calculate moving averages)
     ↓ ma_signal
 Condition Node (Determine buy signal)
@@ -266,6 +252,7 @@ Buy Node (Execute buy)
 **Scenario:** Monitor price changes for multiple trading pairs simultaneously.
 
 **Workflow Structure:**
+
 ```
 Binance Price Node (BTCUSDT, 1m) ─┐
 Binance Price Node (ETHUSDT, 1m) ─┼─→ Code Node (Price comparison analysis)
@@ -279,6 +266,7 @@ Binance Price Node (APTUSDT, 1m) ─┘
 **Scenario:** Fetch daily K-line data and output to Google Sheets to generate charts.
 
 **Configuration:**
+
 ```json
 {
   "symbol": "ETHUSDT",
@@ -288,9 +276,10 @@ Binance Price Node (APTUSDT, 1m) ─┘
 ```
 
 **Workflow Connection:**
+
 ```
 Binance Price Node (ETHUSDT, 1d, 30 bars)
-    ↓ kline_data
+    ↓ data
 Code Node (Format data as table)
     ↓ formatted_data
 Dataset Output Node (Write to Google Sheets)
@@ -304,12 +293,13 @@ Dataset Output Node (Write to Google Sheets)
 
 The node uses the following environment variables to configure Binance API:
 
-| Environment Variable | Description | Required |
-|---------------------|-------------|----------|
-| `BINANCE_API_KEY` | Binance API key | ❌ |
-| `BINANCE_API_SECRET` | Binance API secret | ❌ |
+| Environment Variable | Description        | Required |
+| -------------------- | ------------------ | -------- |
+| `BINANCE_API_KEY`    | Binance API key    | ❌       |
+| `BINANCE_API_SECRET` | Binance API secret | ❌       |
 
 **Note:**
+
 - If API Key is not provided, the node will use Binance public API endpoints
 - Public API has rate limits; API Key is recommended for high-frequency usage
 - Fetching K-line data and current price does not require API Key
@@ -318,11 +308,11 @@ The node uses the following environment variables to configure Binance API:
 
 According to Binance API documentation:
 
-| Limit Type | Public API | With API Key |
-|-----------|-----------|--------------|
-| **Request Rate** | Lower | Higher |
+| Limit Type       | Public API  | With API Key      |
+| ---------------- | ----------- | ----------------- |
+| **Request Rate** | Lower       | Higher            |
 | **Weight Limit** | Shared pool | Independent quota |
-| **Max K-lines** | 1000 bars | 1000 bars |
+| **Max K-lines**  | 1000 bars   | 1000 bars         |
 
 ---
 
@@ -331,21 +321,25 @@ According to Binance API documentation:
 ### ⚠️ Important Reminders
 
 1. **Trading Pair Validity**
+
    - Trading pair symbol must be a valid pair supported by Binance
    - Recommended to select from preset list to avoid invalid symbols
    - Trading pair symbols are automatically converted to uppercase
 
 2. **Time Interval Selection**
+
    - Different time intervals return different data volumes and precision
    - 1m interval suitable for short-term trading strategies
    - 1d or longer intervals suitable for long-term trend analysis
 
 3. **Data Volume Control**
+
    - Maximum limit parameter value is 1000
    - Fetching large amounts of historical data may increase response time
    - Recommended to set reasonable limit value based on actual needs
 
 4. **API Stability**
+
    - Node has built-in connection retry mechanism (up to 3 times)
    - Uses exponential backoff strategy to avoid frequent retries
    - Unstable network may cause node execution failure
@@ -388,11 +382,12 @@ output_data = {
 
 ---
 
-**Q: What's the difference between current_price and close price in kline_data?**
+**Q: What's the difference between current_price and close price in the data output?**
 
-A: 
-- `current_price` comes from real-time ticker endpoint, is the latest trade price
-- The `close` price in the last K-line of `kline_data` is the closing price for that time period
+A:
+
+- `data.current_price` comes from real-time ticker endpoint, is the latest trade price
+- The `close` price in the last K-line of `data.kline_data` is the closing price for that time period
 - If current K-line is not closed yet, the last K-line's close may differ from current_price
 
 ---
@@ -400,6 +395,7 @@ A:
 **Q: How to debug if node execution fails?**
 
 A: Check the following:
+
 1. Is the trading pair symbol correct and supported by Binance
 2. Is network connection normal
 3. Is API Key valid (if configured)
@@ -410,7 +406,7 @@ A: Check the following:
 
 **Q: How to get real-time price instead of K-line data?**
 
-A: Use the `current_price` output to get real-time price. This output can be directly connected to other nodes for price monitoring or triggering trading decisions.
+A: The `data` output contains the `current_price` field. You can access it in downstream nodes using `input_data.get('current_price')` to get the real-time price. If you only need the price without full K-line data, you can extract this field in a Code Node.
 
 ---
 
@@ -425,17 +421,18 @@ A: Use the `current_price` output to get real-time price. This output can be dir
 
 ## Technical Specifications
 
-| Specification | Value |
-|--------------|-------|
-| **Node Version** | 1.0.0 |
-| **Supported API Version** | Binance API v3 |
-| **Max Concurrent Execution** | Depends on API limits |
-| **Execution Mode** | Single execution (completes after fetching data once) |
-| **Resource Cleanup** | Automatic API client cleanup |
-| **Log Levels** | DEBUG, INFO, WARNING, ERROR |
+| Specification                | Value                                                 |
+| ---------------------------- | ----------------------------------------------------- |
+| **Node Version**             | 1.0.0                                                 |
+| **Supported API Version**    | Binance API v3                                        |
+| **Max Concurrent Execution** | Depends on API limits                                 |
+| **Execution Mode**           | Single execution (completes after fetching data once) |
+| **Resource Cleanup**         | Automatic API client cleanup                          |
+| **Log Levels**               | DEBUG, INFO, WARNING, ERROR                           |
 
 ---
 
 **Related Documentation:**
+
 - [Nodes and Workflows](../core-concepts/nodes-and-workflows.md) - Node basics
 - [Weather Syntax](../core-concepts/weather-syntax.md) - Workflow file format

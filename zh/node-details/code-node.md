@@ -6,13 +6,13 @@ Code Node 是一个强大的计算节点，允许用户执行自定义 Python �
 
 ## 节点信息
 
-| 属性 | 值 |
-|------|-----|
-| **节点类型** | `code_node` |
-| **显示名称** | Code |
+| 属性         | 值                  |
+| ------------ | ------------------- |
+| **节点类型** | `code_node`         |
+| **显示名称** | Code                |
 | **节点分类** | Compute（计算处理） |
-| **图标** | 💻 代码图标 |
-| **句柄颜色** | Sky（天蓝色） |
+| **图标**     | 💻 代码图标         |
+| **句柄颜色** | Sky（天蓝色）       |
 
 ---
 
@@ -21,6 +21,7 @@ Code Node 是一个强大的计算节点，允许用户执行自定义 Python �
 Code Node 在受限的安全环境中执行用户提供的 Python 代码。节点内置了多种数据处理库（pandas、requests、BeautifulSoup 等），并通过 Gas 系统和资源限制确保代码安全执行。
 
 **主要用途：**
+
 - 自定义数据处理和转换逻辑
 - 执行复杂的数学计算和统计分析
 - 从外部 API 获取数据
@@ -28,6 +29,7 @@ Code Node 在受限的安全环境中执行用户提供的 Python 代码。节�
 - 实现自定义的交易策略逻辑
 
 **核心特性：**
+
 - 🔒 **安全执行环境**：基于白名单的模块限制和 AST 静态分析
 - ⛽ **Gas 系统**：类似以太坊的 Gas 机制，防止无限循环和过度资源消耗
 - 📊 **丰富的内置库**：预导入 pandas、requests、BeautifulSoup 等常用库
@@ -40,14 +42,15 @@ Code Node 在受限的安全环境中执行用户提供的 Python 代码。节�
 
 ### 参数列表
 
-| 参数 | 类型 | 必填 | 默认值 | 说明 |
-|------|------|------|--------|------|
-| `python_code` | button | ✅ | 见下文 | Python 代码编辑器 |
-| `input_data` | object | ❌ | `{}` | 输入数据对象 |
+| 参数          | 类型   | 必填 | 默认值 | 说明              |
+| ------------- | ------ | ---- | ------ | ----------------- |
+| `python_code` | button | ✅   | 见下文 | Python 代码编辑器 |
+| `input_data`  | object | ❌   | `{}`   | 输入数据对象      |
 
 ### python_code 参数
 
 **默认代码模板：**
+
 ```python
 # Write Python code here
 # You can use input_data_0, input_data_1 etc. to access input data
@@ -59,11 +62,13 @@ output_data = {'result': 'Hello from Code Node!'}
 **代码编写规则：**
 
 1. **输入数据访问**
+
    - 自动聚合的输入：`input_data` 字典
    - 按索引访问：`input_data_0`, `input_data_1`, ...
    - 使用 `input_data.get('key')` 方式访问
 
 2. **输出数据定义**
+
    - 必须定义 `output_data` 变量
    - 支持任意 Python 数据类型（dict、list、str、number 等）
    - 输出会自动发送到下游节点
@@ -114,7 +119,7 @@ output_data = {
 # 示例 2：从外部 API 获取数据
 import requests
 
-response = requests.get('https://api.coingecko.com/api/v3/simple/price', 
+response = requests.get('https://api.coingecko.com/api/v3/simple/price',
                         params={'ids': 'bitcoin', 'vs_currencies': 'usd'})
 data = response.json()
 
@@ -153,16 +158,16 @@ output_data = {
 
 ### 输出列表
 
-| 输出 ID | 显示名称 | 数据类型 | 说明 |
-|---------|---------|---------|------|
-| `output_data` | Output Data | object | 代码执行结果 |
-| `debug_output` | Execution Logs | text | 执行日志和统计信息 |
+| 输出 ID       | 显示名称    | 数据类型 | 说明                       |
+| ------------- | ----------- | -------- | -------------------------- |
+| `output_data` | Output Data | object   | 代码执行结果和执行统计信息 |
 
 ### output_data 输出
 
 **数据类型：** `object` (任意 Python 可序列化类型)
 
 **数据结构：**
+
 ```json
 {
   "your_data": "...",
@@ -176,29 +181,13 @@ output_data = {
 ```
 
 **说明：**
+
 - 用户定义的 `output_data` 内容
-- 自动添加 `_execution_stats` 执行统计信息
+- 自动添加 `_execution_stats` 执行统计信息（包含 Gas 使用、执行时间等）
 - 支持嵌套结构和复杂数据类型
+- 代码中的 `print()` 语句输出会记录到节点日志中
 
-### debug_output 输出
-
-**数据类型：** `text`
-
-**包含内容：**
-```text
-[Your print() statements]
-
---- Execution Stats ---
-Gas used: 12345/1000000000
-Execution time: 0.234s
-Memory limit: 500MB
-```
-
-**说明：**
-- 代码中的 `print()` 输出
-- Gas 使用统计
-- 执行时间信息
-- 内存限制信息
+**注意：** 执行日志和调试信息会自动记录到节点日志系统中，可以通过运行时面板查看。
 
 ---
 
@@ -210,16 +199,17 @@ Code Node 实现了类似以太坊的 Gas 机制来限制代码执行的资源�
 
 **Gas 计算规则：**
 
-| 操作类型 | Gas 消耗 | 说明 |
-|---------|---------|------|
-| 基础消耗 | 100 Gas | 节点启动基础消耗 |
-| 每行代码 | 1 Gas | 每执行一行增加 1 Gas |
-| 循环语句 | 10 Gas | 每个 for/while 循环 |
-| 条件语句 | 5 Gas | 每个 if/else 语句 |
-| pandas 操作 | 20 Gas | DataFrame 操作额外消耗 |
-| 执行时间 | 10 Gas/秒 | 根据实际执行时间增加 |
+| 操作类型    | Gas 消耗  | 说明                   |
+| ----------- | --------- | ---------------------- |
+| 基础消耗    | 100 Gas   | 节点启动基础消耗       |
+| 每行代码    | 1 Gas     | 每执行一行增加 1 Gas   |
+| 循环语句    | 10 Gas    | 每个 for/while 循环    |
+| 条件语句    | 5 Gas     | 每个 if/else 语句      |
+| pandas 操作 | 20 Gas    | DataFrame 操作额外消耗 |
+| 执行时间    | 10 Gas/秒 | 根据实际执行时间增加   |
 
 **默认限制：**
+
 - **最大 Gas**：1,000,000,000 (10 亿)
 - **基础 Gas**：100
 - **Gas 超限**：自动终止执行
@@ -227,8 +217,9 @@ Code Node 实现了类似以太坊的 Gas 机制来限制代码执行的资源�
 **Gas 估算：**
 
 节点在执行前会自动估算代码的 Gas 消耗：
+
 ```
-估算 Gas = 基础 Gas + (AST 节点数 × 2) + (字节码指令数 × 3) + 
+估算 Gas = 基础 Gas + (AST 节点数 × 2) + (字节码指令数 × 3) +
           (循环数 × 10) + (条件数 × 5) + (pandas 操作 × 20)
 ```
 
@@ -238,14 +229,15 @@ Code Node 实现了类似以太坊的 Gas 机制来限制代码执行的资源�
 
 **执行限制：**
 
-| 限制类型 | 默认值 | 说明 |
-|---------|--------|------|
-| **执行超时** | 30 秒 | 单次执行最长时间 |
-| **最大递归深度** | 1000 | 函数调用栈深度 |
-| **最大内存** | 500 MB | 进程内存使用上限 |
-| **最大 Gas** | 10 亿 | 代码复杂度上限 |
+| 限制类型         | 默认值 | 说明             |
+| ---------------- | ------ | ---------------- |
+| **执行超时**     | 30 秒  | 单次执行最长时间 |
+| **最大递归深度** | 1000   | 函数调用栈深度   |
+| **最大内存**     | 500 MB | 进程内存使用上限 |
+| **最大 Gas**     | 10 亿  | 代码复杂度上限   |
 
 **资源监控：**
+
 - 每执行 10,000 行代码检查一次内存使用
 - 超出限制自动终止执行并返回错误
 - 所有限制触发都会在日志中记录
@@ -259,62 +251,69 @@ Code Node 只允许导入白名单中的模块，确保安全性。
 **允许的模块：**
 
 #### 核心 Python 模块
-| 模块 | 说明 |
-|------|------|
-| `math` | 数学函数 |
-| `random` | 随机数生成 |
-| `datetime` | 日期时间处理 |
-| `time` | 时间相关函数 |
-| `calendar` | 日历功能 |
-| `json` | JSON 编解码 |
-| `re` | 正则表达式 |
+
+| 模块          | 说明         |
+| ------------- | ------------ |
+| `math`        | 数学函数     |
+| `random`      | 随机数生成   |
+| `datetime`    | 日期时间处理 |
+| `time`        | 时间相关函数 |
+| `calendar`    | 日历功能     |
+| `json`        | JSON 编解码  |
+| `re`          | 正则表达式   |
 | `collections` | 集合数据类型 |
-| `itertools` | 迭代器工具 |
-| `functools` | 函数工具 |
-| `statistics` | 统计函数 |
-| `decimal` | 十进制运算 |
-| `fractions` | 分数运算 |
+| `itertools`   | 迭代器工具   |
+| `functools`   | 函数工具     |
+| `statistics`  | 统计函数     |
+| `decimal`     | 十进制运算   |
+| `fractions`   | 分数运算     |
 
 #### 数据处理模块
-| 模块 | 别名 | 说明 |
-|------|------|------|
-| `pandas` | `pd` | 数据分析库 |
-| `numpy` | `np` | 数值计算库 |
-| `csv` | - | CSV 文件处理 |
+
+| 模块     | 别名 | 说明         |
+| -------- | ---- | ------------ |
+| `pandas` | `pd` | 数据分析库   |
+| `numpy`  | `np` | 数值计算库   |
+| `csv`    | -    | CSV 文件处理 |
 
 #### 网络和数据采集
-| 模块 | 说明 |
-|------|------|
+
+| 模块       | 说明        |
+| ---------- | ----------- |
 | `requests` | HTTP 客户端 |
-| `urllib` | URL 处理 |
-| `urllib3` | URL 处理库 |
+| `urllib`   | URL 处理    |
+| `urllib3`  | URL 处理库  |
 
 #### HTML/XML 解析
-| 模块 | 别名 | 说明 |
-|------|------|------|
-| `bs4` | `beautifulsoup4` | HTML 解析 |
-| `BeautifulSoup` | - | 解析类 |
-| `lxml` | - | XML/HTML 解析器 |
-| `html5lib` | - | HTML5 解析器 |
-| `xml` | - | XML 处理 |
-| `html` | - | HTML 处理 |
+
+| 模块            | 别名             | 说明            |
+| --------------- | ---------------- | --------------- |
+| `bs4`           | `beautifulsoup4` | HTML 解析       |
+| `BeautifulSoup` | -                | 解析类          |
+| `lxml`          | -                | XML/HTML 解析器 |
+| `html5lib`      | -                | HTML5 解析器    |
+| `xml`           | -                | XML 处理        |
+| `html`          | -                | HTML 处理       |
 
 #### 数据格式和编码
-| 模块 | 说明 |
-|------|------|
-| `base64` | Base64 编解码 |
+
+| 模块       | 说明                |
+| ---------- | ------------------- |
+| `base64`   | Base64 编解码       |
 | `binascii` | 二进制和 ASCII 转换 |
-| `zlib` | 压缩库 |
-| `gzip` | Gzip 压缩 |
+| `zlib`     | 压缩库              |
+| `gzip`     | Gzip 压缩           |
 
 #### 文本处理
-| 模块 | 说明 |
-|------|------|
-| `string` | 字符串常量和工具 |
-| `textwrap` | 文本包装和填充 |
-| `unicodedata` | Unicode 数据库 |
+
+| 模块          | 说明             |
+| ------------- | ---------------- |
+| `string`      | 字符串常量和工具 |
+| `textwrap`    | 文本包装和填充   |
+| `unicodedata` | Unicode 数据库   |
 
 **使用示例：**
+
 ```python
 import pandas as pd  # ✅ 允许
 import requests      # ✅ 允许
@@ -333,13 +332,13 @@ import socket       # ❌ 禁止：低级网络访问
 
 代码在执行前会进行 AST（抽象语法树）静态分析：
 
-| 检查项 | 说明 | 结果 |
-|--------|------|------|
-| 危险模块导入 | `os`, `subprocess`, `socket` 等 | 拒绝执行 |
-| 非白名单模块 | 不在允许列表中的模块 | 拒绝执行 |
-| 危险函数调用 | `eval`, `exec`, `__import__` 等 | 拒绝执行 |
-| 系统调用 | `os.system`, `subprocess.call` 等 | 拒绝执行 |
-| 内置函数修改 | 修改 `__builtins__`, `__dict__` | 拒绝执行 |
+| 检查项       | 说明                              | 结果     |
+| ------------ | --------------------------------- | -------- |
+| 危险模块导入 | `os`, `subprocess`, `socket` 等   | 拒绝执行 |
+| 非白名单模块 | 不在允许列表中的模块              | 拒绝执行 |
+| 危险函数调用 | `eval`, `exec`, `__import__` 等   | 拒绝执行 |
+| 系统调用     | `os.system`, `subprocess.call` 等 | 拒绝执行 |
+| 内置函数修改 | 修改 `__builtins__`, `__dict__`   | 拒绝执行 |
 
 **动态执行监控：**
 
@@ -399,6 +398,7 @@ import socket       # ❌ 禁止：低级网络访问
 **场景：** 接收 Binance Price Node 的 K 线数据，计算技术指标。
 
 **工作流结构：**
+
 ```
 Binance Price Node (BTC/USDT, 1h, 100根)
     ↓ kline_data
@@ -408,6 +408,7 @@ Condition Node (判断买卖信号)
 ```
 
 **Code Node 代码：**
+
 ```python
 import pandas as pd
 
@@ -482,6 +483,7 @@ output_data = {
 **场景：** 从外部 API 获取加密货币恐慌贪婪指数。
 
 **工作流结构：**
+
 ```
 Code Node (抓取恐慌指数)
     ↓ output_data
@@ -491,6 +493,7 @@ Condition Node (决策)
 ```
 
 **Code Node 代码：**
+
 ```python
 import requests
 import json
@@ -540,6 +543,7 @@ print(f"当前恐慌贪婪指数: {fng_value} - {sentiment}")
 **场景：** 将 AI 分析结果转换为交易参数。
 
 **工作流结构：**
+
 ```
 AI Model Node (分析推文)
     ↓ ai_response
@@ -549,6 +553,7 @@ Swap Node (执行交易)
 ```
 
 **Code Node 代码：**
+
 ```python
 # 获取AI分析结果
 ai_response = input_data.get('ai_response', {})
@@ -591,6 +596,7 @@ print(f"交易参数: {action} {amount} {token}")
 ### 1. 代码组织
 
 ✅ **推荐：**
+
 ```python
 # 清晰的结构和注释
 import pandas as pd
@@ -610,6 +616,7 @@ output_data = {
 ```
 
 ❌ **避免：**
+
 ```python
 # 混乱的代码，难以维护
 d=input_data.get('kline_data',{});df=pd.DataFrame(d['kline_data'],columns=d['header']);df['close']=df['close'].astype(float);output_data={'ma_20':float(df['close'].rolling(window=20).mean().iloc[-1])}
@@ -620,6 +627,7 @@ d=input_data.get('kline_data',{});df=pd.DataFrame(d['kline_data'],columns=d['hea
 ### 2. 错误处理
 
 ✅ **推荐：**
+
 ```python
 try:
     data = input_data.get('kline_data')
@@ -639,11 +647,13 @@ except Exception as e:
 ### 3. 性能优化
 
 **减少 Gas 消耗：**
+
 - 避免不必要的循环
 - 使用向量化操作（pandas/numpy）
 - 限制数据处理量
 
 **示例：**
+
 ```python
 # ❌ 低效：使用循环
 total = 0
@@ -672,7 +682,7 @@ print(f"处理结果: {result}")
 output_data = result
 ```
 
-调试输出会在 `debug_output` 中显示。
+**注意：** 代码中的 `print()` 输出会自动记录到节点日志中，可在运行时面板查看。
 
 ---
 
@@ -681,24 +691,29 @@ output_data = result
 ### ⚠️ 重要提示
 
 1. **必须定义 output_data**
+
    - 代码必须设置 `output_data` 变量
    - 如果不设置，节点执行会失败
 
 2. **模块导入限制**
+
    - 只能导入白名单中的模块
    - 尝试导入禁止的模块会导致执行失败
 
 3. **Gas 限制**
+
    - 复杂计算可能超出 Gas 限制
    - 大数据处理建议分批进行
    - 避免深层嵌套循环
 
 4. **执行超时**
+
    - 默认超时 30 秒
    - 长时间运行的代码会被终止
    - HTTP 请求建议设置超时
 
 5. **内存限制**
+
    - 默认限制 500 MB
    - 处理大数据集时注意内存使用
    - 及时释放不需要的变量
@@ -715,6 +730,7 @@ output_data = result
 **Q: 代码执行失败，提示"模块导入被禁止"？**
 
 A: 检查以下几点：
+
 1. 确认模块在白名单中
 2. 检查模块名称拼写是否正确
 3. 查看完整的模块白名单列表
@@ -725,6 +741,7 @@ A: 检查以下几点：
 **Q: 执行超时或 Gas 超限？**
 
 A: 优化代码：
+
 1. 减少循环嵌套层数
 2. 使用向量化操作替代循环
 3. 限制处理的数据量
@@ -734,7 +751,8 @@ A: 优化代码：
 
 **Q: output_data 未定义错误？**
 
-A: 
+A:
+
 1. 确保代码中定义了 `output_data` 变量
 2. 检查代码是否有异常导致提前退出
 3. 添加默认值：`output_data = {}`
@@ -744,24 +762,25 @@ A:
 **Q: 如何查看详细的执行日志？**
 
 A:
-1. 连接 `debug_output` 到其他节点查看
-2. 在代码中使用 `print()` 输出调试信息
-3. 查看节点的执行日志
+
+1. 在代码中使用 `print()` 输出调试信息
+2. 查看节点的执行日志（在运行时面板中）
+3. 检查 `output_data` 中的 `_execution_stats` 字段获取执行统计信息
 
 ---
 
 ## 技术规格
 
-| 规格项 | 值 |
-|--------|-----|
-| **节点版本** | 1.0.0 |
-| **Python 版本** | 3.8+ |
-| **默认超时** | 30 秒 |
-| **默认 Gas 限制** | 1,000,000,000 |
-| **默认内存限制** | 500 MB |
-| **最大递归深度** | 1000 |
-| **执行模式** | 单线程，异步监控 |
-| **安全级别** | 高（白名单 + AST 分析） |
+| 规格项            | 值                      |
+| ----------------- | ----------------------- |
+| **节点版本**      | 1.0.0                   |
+| **Python 版本**   | 3.8+                    |
+| **默认超时**      | 30 秒                   |
+| **默认 Gas 限制** | 1,000,000,000           |
+| **默认内存限制**  | 500 MB                  |
+| **最大递归深度**  | 1000                    |
+| **执行模式**      | 单线程，异步监控        |
+| **安全级别**      | 高（白名单 + AST 分析） |
 
 ---
 
@@ -775,6 +794,7 @@ A:
 ---
 
 **相关文档：**
+
 - [节点与工作流](../core-concepts/nodes-and-workflows.md) - 节点基础概念
 - [AI Model Node](ai-model-node.md) - AI 模型节点
 - [Weather 语法](../core-concepts/weather-syntax.md) - 工作流文件格式
