@@ -318,5 +318,5 @@ A:
 
 ---
 
-**Maintained by:** TradingFlow Development Team
+**Maintained by:** TradingFlow Development Team  
 **Version:** 1.0.0
