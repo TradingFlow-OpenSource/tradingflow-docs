@@ -1,6 +1,6 @@
-# Dataset Output Node
+# Google Sheet Output Node
 
-Dataset Output Node 是专门用于向外部数据源写入数据的节点，是 Dataset Node 的实例节点。节点支持将数据写入 Google Sheets，用于数据持久化、日志记录和结果导出。
+Google Sheet Output Node 用于向 Google Sheets 写入数据，是数据输出类节点。节点自动处理数据格式转换，将上游节点的数据持久化到 Google Sheets。
 
 ---
 
@@ -8,19 +8,17 @@ Dataset Output Node 是专门用于向外部数据源写入数据的节点，是
 
 | 属性 | 值 |
 |------|-----|
-| **节点类型** | `dataset_output_node` |
-| **显示名称** | Dataset Output |
-| **节点分类** | Core（核心功能） |
-| **图标** | 📤 数据库图标 |
+| **节点类型** | `gsheet_output_node` |
+| **显示名称** | Google Sheet Output |
+| **节点分类** | Output（数据输出） |
+| **图标** | 📊 Sheet 图标（绿色） |
 | **句柄颜色** | Rose（玫瑰红） |
-| **节点类别** | Instance Node（实例节点） |
-| **基类节点** | `dataset_node` |
 
 ---
 
 ## 功能说明
 
-Dataset Output Node 将上游节点的数据写入 Google Sheets，支持创建新表格或覆盖现有数据。节点自动处理数据格式转换和表格写入。
+Google Sheet Output Node 将上游节点的数据写入 Google Sheets，用于数据持久化、日志记录和结果导出。
 
 **主要用途：**
 - 保存交易记录
@@ -33,22 +31,7 @@ Dataset Output Node 将上游节点的数据写入 Google Sheets，支持创建�
 - 💾 **Google Sheets 集成**：直接写入 Google Sheets
 - 🔄 **自动格式化**：将 JSON 数据转换为表格格式
 - 📋 **表头生成**：自动创建表头行
-- ✍️ **写入模式**：覆盖现有数据
-- 🎯 **范围指定**：支持写入特定范围
-
----
-
-## 与 Dataset Node 的关系
-
-Dataset Output Node 是 Dataset Node 的**实例节点**，专门用于数据写入：
-
-```
-DatasetNode (基类)
-    └─ 支持 read/write/append 三种模式
-        ↓ 实例化（强制 mode="write"）
-DatasetOutputNode (实例)
-    └─ 仅支持 write 模式，简化参数
-```
+- ✍️ **覆盖写入**：覆盖现有数据
 
 ---
 
@@ -58,11 +41,8 @@ DatasetOutputNode (实例)
 
 | 参数 | 类型 | 必填 | 默认值 | 说明 |
 |------|------|------|--------|------|
-| `data` | object | ✅ | - | 要写入的数据 |
-| `doc_link` | text | ✅ | - | Google Sheets URL 或 ID |
-| `worksheet_name` | text | ❌ | `Sheet1` | 工作表名称 |
-| `range` | text | ❌ | `A1:Z1000` | 数据范围 |
-| `header_row` | boolean | ❌ | `true` | 是否写入表头行 |
+| `data` | object | ✅ | - | 要写入的数据（JSON 格式） |
+| `doc_link` | text | ❌ | - | Google Sheets URL 或 ID |
 
 ### data 参数
 
@@ -97,34 +77,23 @@ DatasetOutputNode (实例)
 
 ### doc_link 参数
 
-**格式与 Dataset Input Node 相同**
+**支持的格式：**
 
-**支持：**
-- 完整 Google Sheets URL
-- Sheet ID
-- 简化 URL
+1. **完整 URL：**
+```
+https://docs.google.com/spreadsheets/d/1uQvzsNIkaan67wFijnDiixusw9qNZnedW4Q3dWJASBM/edit
+```
 
-### worksheet_name 参数
-
-**说明：** 要写入的工作表名称
-
-**行为：**
-- 如果工作表存在：覆盖数据
-- 如果工作表不存在：创建新工作表
-
-### header_row 参数
-
-**说明：** 是否在第一行写入列名
-
-**效果：**
-- `true`：写入表头行 + 数据行
-- `false`：仅写入数据行
+2. **Sheet ID：**
+```
+1uQvzsNIkaan67wFijnDiixusw9qNZnedW4Q3dWJASBM
+```
 
 ---
 
 ## 输出参数
 
-Dataset Output Node 没有输出参数（终端节点）。
+Google Sheet Output Node 没有输出参数（终端节点）。
 
 ---
 
@@ -142,7 +111,7 @@ Swap Node (执行交易)
     ↓ trade_receipt { tx_hash, amount_in, amount_out }
 Code Node (格式化交易记录)
     ↓ formatted_data
-Dataset Output Node (保存到 Google Sheets)
+Google Sheet Output Node (保存到 Google Sheets)
 ```
 
 **Code Node 输出：**
@@ -155,19 +124,12 @@ Dataset Output Node (保存到 Google Sheets)
 }
 ```
 
-**Dataset Output Node 配置：**
+**节点配置：**
 ```json
 {
-  "doc_link": "1uQvzsNIkaan67wFijnDiixusw9qNZnedW4Q3dWJASBM",
-  "worksheet_name": "Trading History",
-  "header_row": true
+  "doc_link": "1uQvzsNIkaan67wFijnDiixusw9qNZnedW4Q3dWJASBM"
 }
 ```
-
-**结果：**
-- 数据写入 `Trading History` 工作表
-- 包含表头和数据
-- 覆盖现有内容
 
 ---
 
@@ -183,7 +145,7 @@ AI Model Node (情绪分析)
     ↓ ai_response { sentiment_score, key_points }
 Code Node (整理分析结果)
     ↓ analysis_data
-Dataset Output Node (导出结果)
+Google Sheet Output Node (导出结果)
 ```
 
 **analysis_data 格式：**
@@ -209,7 +171,7 @@ Dataset Output Node (导出结果)
     ↓
 Code Node (收集日志信息)
     ↓ log_data
-Dataset Output Node (保存日志)
+Google Sheet Output Node (保存日志)
 ```
 
 **log_data 示例：**
@@ -229,15 +191,14 @@ Dataset Output Node (保存日志)
 
 ### 配置要求
 
-**与 Dataset Input Node 相同：**
 1. 创建 Service Account
 2. 启用 Google Sheets API
 3. 下载凭证文件
 4. 共享 Google Sheets（需要「编辑者」权限）
 
 **权限要求：**
-- Dataset Input: 「查看者」即可
-- Dataset Output: 必须「编辑者」权限
+- Google Sheet Input: 「查看者」即可
+- Google Sheet Output: **必须「编辑者」权限**
 
 ---
 
@@ -261,23 +222,7 @@ output_data = {
 }
 ```
 
-### 2. 追加数据（Workaround）
-
-由于 Dataset Output Node 是覆盖模式，要追加数据：
-
-**方案1 - 使用 Code Node：**
-```python
-# 1. 用 Dataset Input Node 读取现有数据
-# 2. 在 Code Node 中合并新旧数据
-# 3. 用 Dataset Output Node 写入全部数据
-```
-
-**方案2 - 使用基类：**
-```python
-# 直接使用 Dataset Node，设置 mode="append"
-```
-
-### 3. 数据验证
+### 2. 数据验证
 
 **在写入前验证：**
 ```python
@@ -293,10 +238,10 @@ if len(headers) != len(rows[0]):
 
 ## 注意事项
 
-### ⚠️ 重要提示
+### 重要提示
 
 1. **覆盖警告**
-   - Dataset Output Node 会**覆盖**现有数据
+   - Google Sheet Output Node 会**覆盖**现有数据
    - 写入前确认目标工作表
    - 建议使用不同工作表名称
 
@@ -349,28 +294,11 @@ A:
 
 ---
 
-**Q: 想要追加数据而不是覆盖？**
-
-A:
-```
-方案1：使用 Code Node 合并数据
-Dataset Input Node (读取现有) → 
-Code Node (合并新旧) → 
-Dataset Output Node (写入全部)
-
-方案2：使用 Dataset Node 基类
-设置 mode="append"
-```
-
----
-
 ## 技术规格
 
 | 规格项 | 值 |
 |--------|-----|
-| **节点版本** | 0.0.2 |
-| **节点类别** | Instance Node |
-| **基类节点** | `dataset_node` |
+| **节点版本** | 0.1.0 |
 | **写入模式** | Write（覆盖） |
 | **数据源** | Google Sheets |
 | **API** | Google Sheets API v4 |
@@ -381,7 +309,7 @@ Dataset Output Node (写入全部)
 
 ## 相关节点
 
-- **Dataset Input Node** - 从 Google Sheets 读取数据
+- **Google Sheet Input Node** - 从 Google Sheets 读取数据
 - **Code Node** - 格式化要写入的数据
 - **AI Model Node** - 生成分析结果
 - **Swap Node** - 生成交易记录
@@ -390,5 +318,5 @@ Dataset Output Node (写入全部)
 
 **相关文档：**
 - [节点与工作流](../core-concepts/nodes-and-workflows.md) - 节点基础概念
-- [Dataset Input Node](dataset-input-node.md) - 数据读取节点
+- [Google Sheet Input Node](gsheet-input-node.md) - 数据读取节点
 - [Code Node](code-node.md) - 数据处理节点

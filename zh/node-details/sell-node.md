@@ -70,16 +70,13 @@ SellNode (实例)
 
 ### 参数列表
 
-| 参数                       | 类型         | 必填 | 默认值                     | 说明                                   |
-| -------------------------- | ------------ | ---- | -------------------------- | -------------------------------------- |
-| `sell_token`               | searchSelect | ✅   | -                          | 要卖出的代币符号                       |
-| `base_token`               | searchSelect | ✅   | -                          | 换取的代币符号                         |
-| `chain`                    | searchSelect | ✅   | `aptos`                    | 区块链网络                             |
-| `vault_address`            | text         | ✅   | -                          | 金库地址                               |
-| `amount_in_human_readable` | **switch**   | ✅   | `{mode:"number",value:""}` | 卖出金额（Number/Percentage 模式切换） |
-| `slippery`                 | number       | ✅   | `1.0`                      | 滑点容忍度（%）                        |
-| `order_type`               | select       | ✅   | `market`                   | 订单类型                               |
-| `limited_price`            | number       | ❌   | -                          | 限价（未实现）                         |
+| 参数                       | 类型         | 必填 | 默认值                            | 说明                                                       |
+| -------------------------- | ------------ | ---- | --------------------------------- | ---------------------------------------------------------- |
+| `sell_token`               | searchSelect | ✅   | -                                 | 要卖出的代币符号                                           |
+| `base_token`               | searchSelect | ✅   | -                                 | 换取的代币符号                                             |
+| `amount_in_human_readable` | **switch**   | ✅   | `{mode:"sell_fixed",value:""}` | 金额（v0.4.1 支持 4 种模式）                               |
+| `slippery`                 | number       | ✅   | `1.0`                             | 滑点容忍度（%）                                            |
+| `vault`                    | object       | ✅   | -                                 | 金库对象（从 Vault Node 接收，包含 chain、address、余额等）|
 
 ### sell_token 参数
 
@@ -103,7 +100,7 @@ SellNode (实例)
 
 ### amount_in_human_readable 参数
 
-**说明：** 卖出金额，支持两种模式：精确数量（Number）和百分比（Percentage）
+**说明：** 金额设置，v0.4.1 版本支持 4 种模式，提供更灵活的金额控制方式。
 
 **类型：** Switch（模式切换器）
 
@@ -111,12 +108,21 @@ SellNode (实例)
 
 ```typescript
 {
-  mode: "number" | "percentage",  // 模式：精确数量 或 百分比
-  value: string                    // 数值（字符串形式）
+  mode: "sell_fixed" | "sell_percent" | "receive_fixed" | "receive_percent",
+  value: string  // 数值（字符串形式）
 }
 ```
 
-**模式 1：Number（精确数量）**
+**支持的模式：**
+
+| 模式              | 说明                                       | 适用场景           |
+| ----------------- | ------------------------------------------ | ------------------ |
+| `sell_fixed`      | 卖出固定数量的 sell_token                  | 精确控制卖出数量   |
+| `sell_percent`    | 卖出 sell_token 余额的百分比（0-100）      | 按比例减仓         |
+| `receive_fixed`   | 换取固定数量的 base_token                  | 精确控制收入金额   |
+| `receive_percent` | 使 base_token 持仓增加指定百分比（0-100）  | 按比例增加稳定币   |
+
+**模式 1：sell_fixed（卖出固定数量）**
 
 指定精确的 `sell_token` 数量进行卖出。
 
@@ -125,14 +131,14 @@ SellNode (实例)
   "sell_token": "APT",
   "base_token": "USDT",
   "amount_in_human_readable": {
-    "mode": "number",
+    "mode": "sell_fixed",
     "value": "10"
   }
 }
 // 含义：卖出 10 APT 换取 USDT
 ```
 
-**模式 2：Percentage（百分比）**
+**模式 2：sell_percent（卖出百分比）**
 
 按 `sell_token` 余额的百分比进行卖出（0-100）。
 
@@ -141,25 +147,96 @@ SellNode (实例)
   "sell_token": "APT",
   "base_token": "USDT",
   "amount_in_human_readable": {
-    "mode": "percentage",
+    "mode": "sell_percent",
     "value": "50"
   }
 }
 // 含义：卖出 50% 的 APT 余额换取 USDT
 ```
 
+**模式 3：receive_fixed（换取固定金额）**
+
+指定要换取的 `base_token` 精确数量。
+
+```json
+{
+  "sell_token": "APT",
+  "base_token": "USDT",
+  "amount_in_human_readable": {
+    "mode": "receive_fixed",
+    "value": "100"
+  }
+}
+// 含义：换取 100 USDT（系统自动计算需要卖出多少 APT）
+```
+
+**模式 4：receive_percent（增加稳定币比例）**
+
+使 `base_token` 当前持仓增加指定百分比。
+
+```json
+{
+  "sell_token": "APT",
+  "base_token": "USDT",
+  "amount_in_human_readable": {
+    "mode": "receive_percent",
+    "value": "20"
+  }
+}
+// 含义：使 USDT 持仓增加 20%（如当前有 500 USDT，则卖出 APT 换取 100 USDT）
+```
+
 **前端 UI：**
 
-- 用户首先选择模式（Number 或 Percentage）
-- Number 模式：显示数字输入框
-- Percentage 模式：显示 0-100% 滑块 + 输入框
+- 用户首先选择模式（4 种可选）
+- 固定金额模式：显示数字输入框
+- 百分比模式：显示 0-100% 滑块 + 输入框
 
 **选择建议：**
 
-- 精确控制卖出数量 → 使用 `number` 模式
-- 按持仓比例卖出 → 使用 `percentage` 模式
+| 场景                 | 推荐模式          | 原因                       |
+| -------------------- | ----------------- | -------------------------- |
+| 精确控制卖出数量     | `sell_fixed`      | 目标明确                   |
+| 按比例减仓           | `sell_percent`    | 分批卖出、止盈             |
+| 换取特定金额稳定币   | `receive_fixed`   | 确定收入金额               |
+| 增加稳定币仓位       | `receive_percent` | 仓位再平衡                 |
 
-### order_type 参数
+**向后兼容性：**
+
+- `"number"` 模式自动映射为 `"sell_fixed"`
+- `"percentage"` 模式自动映射为 `"sell_percent"`
+
+### slippery 参数
+
+**格式：** 百分比（推荐 0.5-5.0）
+
+| 场景         | 推荐值   | 说明       |
+| ------------ | -------- | ---------- |
+| 高流动性代币 | 0.5-1.0% | 主流交易对 |
+| 中等流动性   | 1.0-3.0% | 一般代币   |
+| 低流动性     | 3.0-5.0% | 小市值代币 |
+| 紧急止损     | 3.0-5.0% | 确保成交   |
+
+**说明：**
+
+- 防止价格在交易执行时发生不利变化
+- 值越低，保护越强，但交易失败风险越高
+
+### vault 参数
+
+**来源：** Vault Node 输出
+
+**说明：**
+
+- 必须从上游 Vault Node 接收
+- 包含完整的金库信息：chain、address、holdings、total_value_usd 等
+- 用于执行交易、查询余额和确定交易链
+
+---
+
+## 订单类型说明
+
+### order_type 参数（内部使用）
 
 **支持的类型：**
 
@@ -200,7 +277,7 @@ SellNode (实例)
 
 ## 使用示例
 
-### 示例 1：卖出 APT 换取 USDT
+### 示例 1：卖出 APT 换取 USDT（sell_fixed 模式）
 
 **场景：** 卖出 10 APT 换取 USDT。
 
@@ -208,7 +285,7 @@ SellNode (实例)
 
 ```
 Vault Node (Aptos)
-    ↓ vault_address
+    ↓ vault
 Sell Node (卖出 APT)
     ↓ trade_receipt
 Telegram Sender Node (发送通知)
@@ -221,11 +298,10 @@ Telegram Sender Node (发送通知)
   "sell_token": "APT",
   "base_token": "USDT",
   "amount_in_human_readable": {
-    "mode": "number",
+    "mode": "sell_fixed",
     "value": "10"
   },
-  "slippery": 1.0,
-  "chain": "aptos"
+  "slippery": 1.0
 }
 ```
 
@@ -237,51 +313,105 @@ Telegram Sender Node (发送通知)
 
 ---
 
-### 示例 2：卖出 50% 持仓
+### 示例 2：卖出 50% 持仓（sell_percent 模式）
 
-**场景：** 卖出当前 BTC 持仓的 50%。
+**场景：** 卖出当前 xBTC 持仓的 50%。
 
 **Sell Node 配置：**
 
 ```json
 {
-  "sell_token": "BTC",
+  "sell_token": "xBTC",
   "base_token": "USDT",
   "amount_in_human_readable": {
-    "mode": "percentage",
+    "mode": "sell_percent",
     "value": "50"
   },
-  "slippery": 0.5,
-  "chain": "aptos"
+  "slippery": 0.5
 }
 ```
 
 **执行过程：**
 
 ```
-1. 查询金库 BTC 余额：2.5 BTC
-2. 计算卖出金额：2.5 * 50% = 1.25 BTC
-3. 执行卖出：1.25 BTC → USDT
+1. 从 vault 获取 xBTC 余额：2.5 xBTC
+2. 计算卖出金额：2.5 * 50% = 1.25 xBTC
+3. 执行卖出：1.25 xBTC → USDT
 ```
 
 ---
 
-### 示例 3：止盈策略
+### 示例 3：换取固定金额 USDT（receive_fixed 模式）
 
-**场景：** 价格达到目标位时自动卖出。
+**场景：** 卖出 APT 换取 100 USDT。
+
+**Sell Node 配置：**
+
+```json
+{
+  "sell_token": "APT",
+  "base_token": "USDT",
+  "amount_in_human_readable": {
+    "mode": "receive_fixed",
+    "value": "100"
+  },
+  "slippery": 1.0
+}
+```
+
+**执行过程：**
+
+```
+1. 目标：换取 100 USDT
+2. 系统自动计算需要卖出 ~13.8 APT（假设 APT=$7.25）
+3. 执行卖出：~13.8 APT → 100 USDT
+```
+
+---
+
+### 示例 4：增加稳定币比例（receive_percent 模式）
+
+**场景：** 使 USDT 持仓增加 20%。
+
+**Sell Node 配置：**
+
+```json
+{
+  "sell_token": "APT",
+  "base_token": "USDT",
+  "amount_in_human_readable": {
+    "mode": "receive_percent",
+    "value": "20"
+  },
+  "slippery": 1.0
+}
+```
+
+**执行过程：**
+
+```
+1. 从 vault 获取当前 USDT 持仓：500 USDT
+2. 计算目标增量：500 * 20% = 100 USDT
+3. 执行卖出：~13.8 APT → 100 USDT
+```
+
+---
+
+### 示例 5：止盈策略
+
+**场景：** 价格达到目标位时全仓卖出。
 
 **工作流结构：**
 
 ```
-Binance Price Node (获取 APT 价格)
-    ↓ kline_data
+Price Node (获取 APT 价格)
+    ↓ data
 Code Node (检查价格)
-    ↓ should_sell (true/false)
-Condition Node (价格 > $10?)
-    ↓ (true)
-    ├─→ Vault Node → Sell Node (卖出)
-    ↓ (false)
-    └─→ 继续持有
+    ↓ decision
+Vault Node (获取金库)
+    ↓ vault
+Sell Node (卖出，token 字段可为空实现条件跳过)
+    ↓ trade_receipt
 ```
 
 **Sell Node 配置：**
@@ -291,41 +421,55 @@ Condition Node (价格 > $10?)
   "sell_token": "APT",
   "base_token": "USDT",
   "amount_in_human_readable": {
-    "mode": "percentage",
+    "mode": "sell_percent",
     "value": "100"
   },
   "slippery": 2.0
 }
 ```
 
+**条件交易说明：**
+
+- 如果 `sell_token` 或 `base_token` 为空字符串 `""`，节点将跳过执行
+- 返回的 `trade_receipt` 中 `skipped: true` 表示跳过
+
 ---
 
-### 示例 4：AI 驱动止损
+### 示例 6：AI 驱动止损
 
 **场景：** AI 检测到风险信号时自动卖出。
 
 **工作流结构：**
 
 ```
-Binance Price Node (价格数据)
-    ↓ kline_data
+Price Node (价格数据)
+    ↓ data
 AI Model Node (风险分析)
-    ↓ ai_response { risk_level: "high", action: "sell" }
-    ↓
-Code Node (解析 AI 建议)
-    ↓
-Condition Node (是否卖出?)
-    ↓ (true)
-Vault Node
-    ↓
+    ↓ ai_response
+Vault Node (获取金库)
+    ↓ vault
 Sell Node (执行卖出)
     ↓ trade_receipt
 Dataset Output Node (记录交易)
 ```
 
+**AI 输出示例：**
+
+```json
+{
+  "sell_token": "APT",
+  "base_token": "USDT",
+  "amount_in_human_readable": {
+    "mode": "sell_percent",
+    "value": "100"
+  },
+  "reason": "高风险信号触发止损"
+}
+```
+
 ---
 
-### 示例 5：定期获利
+### 示例 7：定期获利
 
 **场景：** 定期卖出一定比例的盈利代币。
 
@@ -336,7 +480,7 @@ Dataset Output Node (记录交易)
   "sell_token": "APT",
   "base_token": "USDT",
   "amount_in_human_readable": {
-    "mode": "percentage",
+    "mode": "sell_percent",
     "value": "10"
   },
   "slippery": 1.0
@@ -370,7 +514,7 @@ Dataset Output Node (记录交易)
   "sell_token": "APT",
   "base_token": "USDT",
   "amount_in_human_readable": {
-    "mode": "number",
+    "mode": "sell_fixed",
     "value": "10"
   }
 }
@@ -384,7 +528,7 @@ Dataset Output Node (记录交易)
   "buy_token": "APT",
   "base_token": "USDT",
   "amount_in_human_readable": {
-    "mode": "number",
+    "mode": "spend_fixed",
     "value": "100"
   }
 }
@@ -397,42 +541,63 @@ Dataset Output Node (记录交易)
 - 买入新的代币 → Buy Node
 - 任意方向交换 → Swap Node
 
-### 3. 卖出策略
+### 3. 金额模式选择（v0.4.1）
 
-**全部卖出（Percentage 模式）：**
+**全部卖出（sell_percent）：**
 
 ```json
 {
   "amount_in_human_readable": {
-    "mode": "percentage",
+    "mode": "sell_percent",
     "value": "100"
   }
 }
 ```
 
-**分批卖出（Percentage 模式）：**
+**分批卖出（sell_percent）：**
 
 ```json
 {
   "amount_in_human_readable": {
-    "mode": "percentage",
+    "mode": "sell_percent",
     "value": "25"
   }
 }
 // 分 4 次卖出，每次 25%
 ```
 
-**固定数量（Number 模式）：**
+**固定数量卖出（sell_fixed）：**
 
 ```json
 {
   "amount_in_human_readable": {
-    "mode": "number",
+    "mode": "sell_fixed",
     "value": "5"
   }
 }
 // 每次卖出固定 5 个代币
 ```
+
+**换取固定金额（receive_fixed）：**
+
+```json
+{
+  "amount_in_human_readable": {
+    "mode": "receive_fixed",
+    "value": "100"
+  }
+}
+// 换取固定 100 USDT
+```
+
+**模式选择建议：**
+
+| 场景                 | 推荐模式          |
+| -------------------- | ----------------- |
+| 精确控制卖出数量     | `sell_fixed`      |
+| 按比例减仓、止盈     | `sell_percent`    |
+| 换取特定金额稳定币   | `receive_fixed`   |
+| 增加稳定币仓位       | `receive_percent` |
 
 ### 4. 滑点设置建议
 

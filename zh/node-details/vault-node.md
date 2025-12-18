@@ -42,20 +42,23 @@ Vault Node 连接到 TradingFlow 的去中心化金库系统，查询指定用�
 
 ### 参数列表
 
-| 参数            | 类型   | 必填 | 默认值  | 说明                               |
-| --------------- | ------ | ---- | ------- | ---------------------------------- |
-| `chain`         | select | ✅   | `aptos` | 区块链网络                         |
-| `vault_address` | text   | ✅   | -       | 金库地址或用户地址                 |
-| `chain_id`      | number | ❌   | `545`   | Flow EVM 链 ID（仅 Flow EVM 需要） |
+| 参数            | 类型   | 必填 | 默认值  | 说明               |
+| --------------- | ------ | ---- | ------- | ------------------ |
+| `chain`         | select | ✅   | `aptos` | 区块链网络         |
+| `vault_address` | text   | ✅   | -       | 金库地址或用户地址 |
+
+> **注意：** `chain_id` 参数已被移除（v0.4.1+）。系统根据 `chain` 参数自动确定对应的 `chain_id`：
+> - `aptos` → 无需 chain_id
+> - `flow_evm` → 自动使用 545（测试网）或 747（主网）
 
 ### chain 参数
 
 **支持的区块链：**
 
-| 链           | 值         | 说明              |
-| ------------ | ---------- | ----------------- |
-| **Aptos**    | `aptos`    | Aptos 主网/测试网 |
-| **Flow EVM** | `flow_evm` | Flow EVM 测试网   |
+| 链           | 值         | chain_id（自动） | 说明              |
+| ------------ | ---------- | ---------------- | ----------------- |
+| **Aptos**    | `aptos`    | -                | Aptos 主网/测试网 |
+| **Flow EVM** | `flow_evm` | 545              | Flow EVM 测试网   |
 
 **选择指南：**
 
@@ -76,15 +79,6 @@ Vault Node 连接到 TradingFlow 的去中心化金库系统，查询指定用�
 - 这是您在 TradingFlow 系统中创建的金库地址
 - 可以在 Windmill 页面的 Vaults 标签页查看您的金库地址
 - 地址必须是有效的已创建金库
-
-### chain_id 参数
-
-**仅用于 Flow EVM：**
-
-| 链 ID | 网络         | 说明                      |
-| ----- | ------------ | ------------------------- |
-| `545` | Flow Testnet | Flow EVM 测试网（默认）   |
-| `747` | Flow Mainnet | Flow EVM 主网（即将支持） |
 
 ---
 
@@ -133,29 +127,6 @@ Vault Node 连接到 TradingFlow 的去中心化金库系统，查询指定用�
 
 ---
 
-## 信号传输
-
-### 发送的信号
-
-**信号句柄：** `vault_balance`
-
-**信号类型：** `SignalType.VAULT_INFO`
-
-**信号负载：** 完整的金库信息对象（见上文 vault_balance 输出结构）
-
-### 信号流向示例
-
-```
-Vault Node
-    ↓ vault (金库信息)
-    ↓ chain (链信息)
-    ↓ vault_address (地址)
-    ↓
-Swap/Buy/Sell Node (使用金库执行交易)
-```
-
----
-
 ## 工作流程
 
 ### 节点执行流程
@@ -164,7 +135,7 @@ Swap/Buy/Sell Node (使用金库执行交易)
 1. 参数验证
    ├─ 检查 chain 是否支持（aptos/flow_evm）
    ├─ 检查 vault_address 是否提供
-   └─ Flow EVM 检查 chain_id（默认 545）
+   └─ 根据 chain 自动确定 chain_id（从配置表获取）
 
 2. 初始化服务
    ├─ Aptos: AptosVaultService
@@ -284,10 +255,11 @@ Telegram Sender Node (发送交易通知)
 ```json
 {
   "chain": "flow_evm",
-  "chain_id": 545,
   "vault_address": "0x1234567890123456789012345678901234567890"
 }
 ```
+
+> 注意：`chain_id` 无需配置，系统会根据 `chain: "flow_evm"` 自动使用 545（测试网）。
 
 **工作流结构：**
 
@@ -297,8 +269,6 @@ Vault Node (Flow EVM)
     ↓
 Code Node (检查是否有足够 USDC)
     ↓ decision
-Condition Node (余额 > 100 USDC?)
-    ↓ (Yes)
 Buy Node (买入 FLOW)
 ```
 
@@ -315,7 +285,7 @@ AI Model Node (分析市场，决定在哪条链交易)
     ↓ ai_response { chain: "aptos" }
     ↓
 Vault Node (接收 chain 参数)
-    ↓ vault_balance
+    ↓ vault
     ↓
 Swap Node (执行交易)
 ```
@@ -440,7 +410,7 @@ Vault Node (Flow) ──┘
 2. **链参数一致性**
 
    - chain 参数必须与金库实际所在链匹配
-   - Flow EVM 必须指定正确的 chain_id
+   - chain_id 由系统根据 chain 自动确定（无需手动配置）
    - 不支持跨链金库查询
 
 3. **价格数据时效性**
@@ -456,9 +426,9 @@ Vault Node (Flow) ──┘
    - 总价值为所有持仓价值之和
 
 5. **输出信号使用**
-   - 下游交易节点必须接收 vault_address 参数
-   - chain 参数确保交易在正确的链上执行
-   - vault 可用于余额检查和决策
+   - 下游交易节点通过 vault 对象接收完整信息
+   - vault 对象包含 chain、address、holdings 等所有必需字段
+   - 交易节点从 vault 对象中提取所需信息执行交易
 
 ---
 
@@ -489,7 +459,7 @@ A:
 
 A:
 
-1. 确认 chain_id 正确（测试网: 545）
+1. 确认 chain 参数为 `flow_evm`（chain_id 由系统自动确定为 545）
 2. 检查 Flow EVM companion 服务是否运行
 3. 确认金库地址格式正确
 4. 查看错误日志确认具体问题

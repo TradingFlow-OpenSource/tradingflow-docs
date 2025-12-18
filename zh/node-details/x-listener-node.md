@@ -38,18 +38,28 @@ X Listener Node 连接到 X（Twitter）平台，实时获取指定账户的推�
 
 ## 输入参数
 
-### 参数列表
+### 核心参数（始终显示）
 
 | 参数 | 类型 | 必填 | 默认值 | 说明 |
 |------|------|------|--------|------|
-| `accounts` | paragraph | ❌* | `[]` | X 账户列表 |
-| `keywords` | paragraph | ❌ | `""` | 关键词过滤 |
-| `search_mode` | select | ✅ | `user_tweets` | 搜索模式 |
-| `query_type` | select | ✅ | `Latest` | 搜索类型 |
-| `limit` | number | ✅ | `20` | 推文数量限制 |
-| `api_key` | text | ✅ | - | Twitter API 密钥 |
+| `accounts` | paragraph | ✅ | - | X 账户列表（逗号分隔） |
+| `keywords` | paragraph | ❌ | `""` | 关键词过滤（逗号分隔） |
 
-\* `accounts` 在 `user_tweets` 模式下必填
+### 高级参数（默认隐藏）
+
+以下参数默认隐藏，仅在需要时展开使用：
+
+| 参数 | 类型 | 默认值 | 说明 |
+|------|------|--------|------|
+| `search_mode` | select | `latest` | 搜索模式：`latest`（最新）或 `top`（热门） |
+| `query_type` | select | `user_timeline` | 查询类型：`user_timeline`（用户时间线）或 `search`（搜索） |
+| `limit` | number | `20` | 推文数量限制（1-100） |
+
+**关于高级参数：**
+- 点击节点底部的 "Show advanced params" 按钮可展开
+- 在弹窗中选择需要的参数，或点击 "Show All" 显示全部
+- 已显示的参数可点击 "Hide" 按钮隐藏（同时清空值）
+- 当 Agent 为高级参数指定值时，该参数会自动显示
 
 ### accounts 参数
 

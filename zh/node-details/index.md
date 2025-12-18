@@ -7,19 +7,16 @@
 ## 📊 数据输入节点
 
 ### 价格数据
-- **[Binance Price Node](binance-price-node.md)** - 获取 Binance 交易所的 K 线数据和实时价格
+- **[Price Node](price-node.md)** - 从 CoinGecko 获取加密货币价格数据（当前价格和 OHLC K线）
 
 ### 社交媒体
 - **[X Listener Node](x-listener-node.md)** - 监控 Twitter/X 社交媒体推文
 
-### 新闻聚合（即将推出）
-- **新闻聚合节点** - 获取最新行业资讯
+### 数据平台
+- **[RootData Node](rootdata-node.md)** - 查询 RootData API（项目搜索、热门榜单、VC、融资等）
 
 ### 数据存储
-- **[Dataset Input Node](dataset-input-node.md)** - 从 Google Sheets 读取数据
-
-### 区块链数据（即将推出）
-- **链上数据节点** - 读取区块链上的数据
+- **[Google Sheet Input Node](gsheet-input-node.md)** - 从 Google Sheets 读取数据
 
 ---
 
@@ -48,7 +45,7 @@
 ## 🔧 核心功能节点
 
 ### 数据输出
-- **[Dataset Output Node](dataset-output-node.md)** - 将数据写入 Google Sheets
+- **[Google Sheet Output Node](gsheet-output-node.md)** - 将数据写入 Google Sheets
 
 ### 消息通知
 - **[Telegram Sender Node](telegram-sender-node.md)** - 发送 Telegram 消息通知
@@ -59,15 +56,12 @@
 
 ### 🤔 决策节点
 - **条件判断节点** - If/Then/Else 逻辑
-- **AI 分析节点** - 机器学习预测和分析
 - **技术指标节点** - RSI、MACD 等技术分析
 - **风险评估节点** - 评估交易风险等级
 
 ### ⚡ 执行节点
-- **交易节点** - 执行买入/卖出操作
 - **金库管理节点** - 存款/取款操作
 - **通知节点** - 发送消息提醒
-- **数据存储节点** - 保存策略数据
 
 ### 🛠️ 工具节点
 - **定时器节点** - 定时触发工作流
@@ -76,6 +70,22 @@
 - **延迟节点** - 添加执行延迟
 
 敬请期待完整的节点使用指南！
+
+---
+
+## 📖 高级参数功能
+
+部分节点支持**高级参数**（Advanced Parameters），这些参数默认隐藏以简化界面：
+
+- 点击节点底部的 "Show advanced params" 按钮
+- 在弹窗中选择需要的参数
+- 或点击 "Show All" 显示全部参数
+
+当 Agent 为高级参数指定值时，该参数会自动显示在 UI 中。
+
+**支持高级参数的节点：**
+- RootData Node（22 个高级参数）
+- X Listener Node（3 个高级参数）
 
 ---
 

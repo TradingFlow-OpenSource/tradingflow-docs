@@ -71,16 +71,13 @@ BuyNode (实例)
 
 ### 参数列表
 
-| 参数                       | 类型         | 必填 | 默认值                     | 说明                                   |
-| -------------------------- | ------------ | ---- | -------------------------- | -------------------------------------- |
-| `buy_token`                | searchSelect | ✅   | -                          | 要买入的代币符号                       |
-| `base_token`               | searchSelect | ✅   | -                          | 用于支付的代币符号                     |
-| `chain`                    | searchSelect | ✅   | `aptos`                    | 区块链网络                             |
-| `vault_address`            | text         | ✅   | -                          | 金库地址                               |
-| `amount_in_human_readable` | **switch**   | ✅   | `{mode:"number",value:""}` | 支付金额（Number/Percentage 模式切换） |
-| `slippery`                 | number       | ✅   | `1.0`                      | 滑点容忍度（%）                        |
-| `order_type`               | select       | ✅   | `market`                   | 订单类型                               |
-| `limited_price`            | number       | ❌   | -                          | 限价（未实现）                         |
+| 参数                       | 类型         | 必填 | 默认值                            | 说明                                                       |
+| -------------------------- | ------------ | ---- | --------------------------------- | ---------------------------------------------------------- |
+| `buy_token`                | searchSelect | ✅   | -                                 | 要买入的代币符号                                           |
+| `base_token`               | searchSelect | ✅   | -                                 | 用于支付的代币符号                                         |
+| `amount_in_human_readable` | **switch**   | ✅   | `{mode:"spend_fixed",value:""}` | 金额（v0.4.1 支持 4 种模式）                               |
+| `slippery`                 | number       | ✅   | `1.0`                             | 滑点容忍度（%）                                            |
+| `vault`                    | object       | ✅   | -                                 | 金库对象（从 Vault Node 接收，包含 chain、address、余额等）|
 
 ### buy_token 参数
 
@@ -104,7 +101,7 @@ BuyNode (实例)
 
 ### amount_in_human_readable 参数
 
-**说明：** 支付金额，支持两种模式：精确数量（Number）和百分比（Percentage）
+**说明：** 金额设置，v0.4.1 版本支持 4 种模式，提供更灵活的金额控制方式。
 
 **类型：** Switch（模式切换器）
 
@@ -112,12 +109,21 @@ BuyNode (实例)
 
 ```typescript
 {
-  mode: "number" | "percentage",  // 模式：精确数量 或 百分比
-  value: string                    // 数值（字符串形式）
+  mode: "spend_fixed" | "spend_percent" | "buy_fixed" | "buy_percent",
+  value: string  // 数值（字符串形式）
 }
 ```
 
-**模式 1：Number（精确数量）**
+**支持的模式：**
+
+| 模式            | 说明                                       | 适用场景           |
+| --------------- | ------------------------------------------ | ------------------ |
+| `spend_fixed`   | 花费固定数量的 base_token                  | 精确控制支出金额   |
+| `spend_percent` | 花费 base_token 余额的百分比（0-100）      | 按比例分配资金     |
+| `buy_fixed`     | 买入固定数量的 buy_token                   | 精确控制买入数量   |
+| `buy_percent`   | 使 buy_token 持仓增加指定百分比（0-100）   | 按比例增加持仓     |
+
+**模式 1：spend_fixed（花费固定金额）**
 
 指定精确的 `base_token` 数量进行支付。
 
@@ -126,14 +132,14 @@ BuyNode (实例)
   "buy_token": "APT",
   "base_token": "USDT",
   "amount_in_human_readable": {
-    "mode": "number",
+    "mode": "spend_fixed",
     "value": "100"
   }
 }
-// 含义：使用 100 USDT 买入 APT
+// 含义：花费 100 USDT 买入 APT
 ```
 
-**模式 2：Percentage（百分比）**
+**模式 2：spend_percent（花费百分比）**
 
 按 `base_token` 余额的百分比进行支付（0-100）。
 
@@ -142,25 +148,95 @@ BuyNode (实例)
   "buy_token": "APT",
   "base_token": "USDT",
   "amount_in_human_readable": {
-    "mode": "percentage",
+    "mode": "spend_percent",
     "value": "50"
   }
 }
-// 含义：使用 50% 的 USDT 余额买入 APT
+// 含义：花费 50% 的 USDT 余额买入 APT
+```
+
+**模式 3：buy_fixed（买入固定数量）**
+
+指定要买入的 `buy_token` 精确数量。
+
+```json
+{
+  "buy_token": "APT",
+  "base_token": "USDT",
+  "amount_in_human_readable": {
+    "mode": "buy_fixed",
+    "value": "10"
+  }
+}
+// 含义：买入 10 APT（系统自动计算需要多少 USDT）
+```
+
+**模式 4：buy_percent（增加持仓百分比）**
+
+使 `buy_token` 当前持仓增加指定百分比。
+
+```json
+{
+  "buy_token": "APT",
+  "base_token": "USDT",
+  "amount_in_human_readable": {
+    "mode": "buy_percent",
+    "value": "20"
+  }
+}
+// 含义：使 APT 持仓增加 20%（如当前有 100 APT，则买入 20 APT）
 ```
 
 **前端 UI：**
 
-- 用户首先选择模式（Number 或 Percentage）
-- Number 模式：显示数字输入框
-- Percentage 模式：显示 0-100% 滑块 + 输入框
+- 用户首先选择模式（4 种可选）
+- 固定金额模式：显示数字输入框
+- 百分比模式：显示 0-100% 滑块 + 输入框
 
 **选择建议：**
 
-- 精确控制成本 → 使用 `number` 模式
-- 动态调整仓位 → 使用 `percentage` 模式
+| 场景                 | 推荐模式        | 原因                       |
+| -------------------- | --------------- | -------------------------- |
+| 精确控制支出成本     | `spend_fixed`   | 确定花费金额               |
+| 按资金比例买入       | `spend_percent` | 动态分配资金               |
+| 购买特定数量代币     | `buy_fixed`     | 目标明确                   |
+| 按比例增加仓位       | `buy_percent`   | 仓位管理                   |
 
-### order_type 参数
+**向后兼容性：**
+
+- `"number"` 模式自动映射为 `"spend_fixed"`
+- `"percentage"` 模式自动映射为 `"spend_percent"`
+
+### slippery 参数
+
+**格式：** 百分比（推荐 0.5-5.0）
+
+| 场景         | 推荐值   | 说明       |
+| ------------ | -------- | ---------- |
+| 高流动性代币 | 0.5-1.0% | 主流交易对 |
+| 中等流动性   | 1.0-3.0% | 一般代币   |
+| 低流动性     | 3.0-5.0% | 小市值代币 |
+
+**说明：**
+
+- 防止价格在交易执行时发生不利变化
+- 值越低，保护越强，但交易失败风险越高
+
+### vault 参数
+
+**来源：** Vault Node 输出
+
+**说明：**
+
+- 必须从上游 Vault Node 接收
+- 包含完整的金库信息：chain、address、holdings、total_value_usd 等
+- 用于执行交易、查询余额和确定交易链
+
+---
+
+## 订单类型说明
+
+### order_type 参数（内部使用）
 
 **支持的类型：**
 
@@ -200,7 +276,7 @@ BuyNode (实例)
 
 ## 使用示例
 
-### 示例 1：使用 USDT 买入 APT
+### 示例 1：使用 USDT 买入 APT（spend_fixed 模式）
 
 **场景：** 花费 100 USDT 购买 APT。
 
@@ -208,7 +284,7 @@ BuyNode (实例)
 
 ```
 Vault Node (Aptos)
-    ↓ vault_address
+    ↓ vault
 Buy Node (买入 APT)
     ↓ trade_receipt
 Telegram Sender Node (发送通知)
@@ -221,11 +297,10 @@ Telegram Sender Node (发送通知)
   "buy_token": "APT",
   "base_token": "USDT",
   "amount_in_human_readable": {
-    "mode": "number",
+    "mode": "spend_fixed",
     "value": "100"
   },
-  "slippery": 1.0,
-  "chain": "aptos"
+  "slippery": 1.0
 }
 ```
 
@@ -237,36 +312,91 @@ Telegram Sender Node (发送通知)
 
 ---
 
-### 示例 2：使用 50% 余额买入
+### 示例 2：使用 50% 余额买入（spend_percent 模式）
 
-**场景：** 使用当前 USDT 余额的 50% 买入 BTC。
+**场景：** 使用当前 USDT 余额的 50% 买入 xBTC。
 
 **Buy Node 配置：**
 
 ```json
 {
-  "buy_token": "BTC",
+  "buy_token": "xBTC",
   "base_token": "USDT",
   "amount_in_human_readable": {
-    "mode": "percentage",
+    "mode": "spend_percent",
     "value": "50"
   },
-  "slippery": 0.5,
-  "chain": "aptos"
+  "slippery": 0.5
 }
 ```
 
 **执行过程：**
 
 ```
-1. 查询金库 USDT 余额：1000 USDT
+1. 从 vault 对象获取 USDT 余额：1000 USDT
 2. 计算支付金额：1000 * 50% = 500 USDT
-3. 执行买入：500 USDT → BTC
+3. 执行买入：500 USDT → xBTC
 ```
 
 ---
 
-### 示例 3：AI 推荐买入
+### 示例 3：买入固定数量代币（buy_fixed 模式）
+
+**场景：** 买入正好 10 个 APT。
+
+**Buy Node 配置：**
+
+```json
+{
+  "buy_token": "APT",
+  "base_token": "USDT",
+  "amount_in_human_readable": {
+    "mode": "buy_fixed",
+    "value": "10"
+  },
+  "slippery": 1.0
+}
+```
+
+**执行过程：**
+
+```
+1. 目标：买入 10 APT
+2. 系统自动计算需要 ~72.5 USDT（假设 APT=$7.25）
+3. 执行买入：~72.5 USDT → 10 APT
+```
+
+---
+
+### 示例 4：增加持仓比例（buy_percent 模式）
+
+**场景：** 使 APT 持仓增加 20%。
+
+**Buy Node 配置：**
+
+```json
+{
+  "buy_token": "APT",
+  "base_token": "USDT",
+  "amount_in_human_readable": {
+    "mode": "buy_percent",
+    "value": "20"
+  },
+  "slippery": 1.0
+}
+```
+
+**执行过程：**
+
+```
+1. 从 vault 获取当前 APT 持仓：100 APT
+2. 计算买入数量：100 * 20% = 20 APT
+3. 执行买入：~145 USDT → 20 APT
+```
+
+---
+
+### 示例 5：AI 推荐买入
 
 **场景：** AI 分析后推荐买入某个代币。
 
@@ -276,10 +406,10 @@ Telegram Sender Node (发送通知)
 X Listener Node (监听KOL推文)
     ↓ latest_tweets
 AI Model Node (分析推文)
-    ↓ ai_response { buy_token: "BTC", amount: 100 }
+    ↓ ai_response
     ↓
 Vault Node (获取金库)
-    ↓ vault_address
+    ↓ vault
     ↓
 Buy Node (执行买入)
     ↓ trade_receipt
@@ -290,9 +420,12 @@ Dataset Output Node (保存记录)
 
 ```json
 {
-  "buy_token": "BTC",
+  "buy_token": "xBTC",
   "base_token": "USDT",
-  "amount": 100.0,
+  "amount_in_human_readable": {
+    "mode": "spend_percent",
+    "value": "50"
+  },
   "confidence": 0.85,
   "reason": "技术面突破关键阻力位"
 }
@@ -300,23 +433,27 @@ Dataset Output Node (保存记录)
 
 ---
 
-### 示例 4：条件买入
+### 示例 6：条件买入
 
 **场景：** 价格低于某个值时买入。
 
 **工作流结构：**
 
 ```
-Binance Price Node (获取 BTC 价格)
-    ↓ kline_data
+Price Node (获取 xBTC 价格)
+    ↓ data
 Code Node (检查价格)
-    ↓ should_buy (true/false)
-Condition Node (价格 < $50,000?)
-    ↓ (true)
-    ├─→ Vault Node → Buy Node (买入)
-    ↓ (false)
-    └─→ 不执行
+    ↓ decision
+Vault Node (获取金库)
+    ↓ vault
+Buy Node (买入，token 字段可为空实现条件跳过)
+    ↓ trade_receipt
 ```
+
+**条件交易说明：**
+
+- 如果 `buy_token` 或 `base_token` 为空字符串 `""`，节点将跳过执行
+- 返回的 `trade_receipt` 中 `skipped: true` 表示跳过
 
 ---
 
@@ -343,7 +480,10 @@ Condition Node (价格 < $50,000?)
 {
   "buy_token": "APT",
   "base_token": "USDT",
-  "amount_in_human_readable": 100.0
+  "amount_in_human_readable": {
+    "mode": "spend_fixed",
+    "value": "100"
+  }
 }
 ```
 
@@ -353,7 +493,10 @@ Condition Node (价格 < $50,000?)
 {
   "from_token": "USDT",
   "to_token": "APT",
-  "amount_in_human_readable": 100.0
+  "amount_in_human_readable": {
+    "mode": "from_fixed",
+    "value": "100"
+  }
 }
 ```
 
@@ -363,36 +506,64 @@ Condition Node (价格 < $50,000?)
 - 双向交换操作 → 使用 Swap Node
 - AI 生成的工作流 → Buy Node 语义更清晰
 
-### 3. 金额设置
+### 3. 金额模式选择（v0.4.1）
 
-**固定金额买入（Number 模式）：**
+**花费固定金额（spend_fixed）：**
 
 ```json
 {
   "amount_in_human_readable": {
-    "mode": "number",
+    "mode": "spend_fixed",
     "value": "100"
   }
 }
 // 花费固定 100 USDT
 ```
 
-**比例买入（Percentage 模式）：**
+**按比例花费（spend_percent）：**
 
 ```json
 {
   "amount_in_human_readable": {
-    "mode": "percentage",
+    "mode": "spend_percent",
     "value": "30"
   }
 }
 // 花费 USDT 余额的 30%
 ```
 
-**建议：**
+**买入固定数量（buy_fixed）：**
 
-- 精确控制成本 → 使用 `number` 模式
-- 动态调整仓位 → 使用 `percentage` 模式
+```json
+{
+  "amount_in_human_readable": {
+    "mode": "buy_fixed",
+    "value": "10"
+  }
+}
+// 买入固定 10 个代币
+```
+
+**增加持仓比例（buy_percent）：**
+
+```json
+{
+  "amount_in_human_readable": {
+    "mode": "buy_percent",
+    "value": "20"
+  }
+}
+// 使持仓增加 20%
+```
+
+**模式选择建议：**
+
+| 场景                 | 推荐模式        |
+| -------------------- | --------------- |
+| 精确控制支出成本     | `spend_fixed`   |
+| 按资金比例分配       | `spend_percent` |
+| 购买特定数量代币     | `buy_fixed`     |
+| 按比例增加仓位       | `buy_percent`   |
 
 ---
 
