@@ -16,16 +16,21 @@
 
 ## 📖 节点详情
 * [节点列表](node-details/index.md)
-  * [Binance Price Node](node-details/binance-price-node.md)
+* 数据输入节点
+  * [Price Node](node-details/price-node.md)
   * [X Listener Node](node-details/x-listener-node.md)
-  * [Dataset Input Node](node-details/dataset-input-node.md)
+  * [RootData Node](node-details/rootdata-node.md)
+  * [Google Sheet Input Node](node-details/gsheet-input-node.md)
+* 计算处理节点
   * [AI Model Node](node-details/ai-model-node.md)
   * [Code Node](node-details/code-node.md)
+* 交易执行节点
+  * [Vault Node](node-details/vault-node.md)
   * [Swap Node](node-details/swap-node.md)
   * [Buy Node](node-details/buy-node.md)
   * [Sell Node](node-details/sell-node.md)
-  * [Vault Node](node-details/vault-node.md)
-  * [Dataset Output Node](node-details/dataset-output-node.md)
+* 数据输出节点
+  * [Google Sheet Output Node](node-details/gsheet-output-node.md)
   * [Telegram Sender Node](node-details/telegram-sender-node.md)
 
 ## 👷 工程文档

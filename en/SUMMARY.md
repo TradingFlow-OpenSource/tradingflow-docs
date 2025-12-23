@@ -16,16 +16,21 @@
 
 ## 📖 Node Details
 * [Node List](node-details/index.md)
-  * [Binance Price Node](node-details/binance-price-node.md)
+* Data Input Nodes
+  * [Price Node](node-details/price-node.md)
   * [X Listener Node](node-details/x-listener-node.md)
-  * [Dataset Input Node](node-details/dataset-input-node.md)
+  * [RootData Node](node-details/rootdata-node.md)
+  * [Google Sheet Input Node](node-details/gsheet-input-node.md)
+* Compute Nodes
   * [AI Model Node](node-details/ai-model-node.md)
   * [Code Node](node-details/code-node.md)
+* Trade Nodes
+  * [Vault Node](node-details/vault-node.md)
   * [Swap Node](node-details/swap-node.md)
   * [Buy Node](node-details/buy-node.md)
   * [Sell Node](node-details/sell-node.md)
-  * [Vault Node](node-details/vault-node.md)
-  * [Dataset Output Node](node-details/dataset-output-node.md)
+* Output Nodes
+  * [Google Sheet Output Node](node-details/gsheet-output-node.md)
   * [Telegram Sender Node](node-details/telegram-sender-node.md)
 
 ## 👷 Engineering Docs
