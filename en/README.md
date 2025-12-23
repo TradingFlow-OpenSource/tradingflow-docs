@@ -17,6 +17,14 @@ TradingFlow is a workflow application platform that enables everyone to interact
 
 ---
 
+## 💬 Join the Community
+
+Have questions or ideas? Join our community!
+
+👉 **[Telegram Community](https://t.me/tradingflowai)** - Connect with other users and get help
+
+---
+
 ## 🌍 Other Languages
 
 This documentation is also available in:

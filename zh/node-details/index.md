@@ -89,6 +89,16 @@
 
 ---
 
+---
+
+## 💬 需要帮助？
+
+加入我们的社区获取支持：
+
+👉 **[Telegram 社区](https://t.me/tradingflowai)**
+
+---
+
 现在可以先查看：
 - [核心概念](../core-concepts/on-chain-vaults.md) - 了解 TradingFlow 的基础架构
 - [工程文档](../engineering-docs/development-background.md) - 了解技术背景

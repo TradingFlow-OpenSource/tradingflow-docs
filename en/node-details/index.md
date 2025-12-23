@@ -89,6 +89,16 @@ When the Agent specifies a value for an advanced parameter, it automatically bec
 
 ---
 
+---
+
+## 💬 Need Help?
+
+Join our community for support:
+
+👉 **[Telegram Community](https://t.me/tradingflowai)**
+
+---
+
 For now, you can check out:
 - [Core Concepts](../core-concepts/on-chain-vaults.md) - Understand TradingFlow's basic architecture
 - [Engineering Docs](../engineering-docs/development-background.md) - Learn about technical background
